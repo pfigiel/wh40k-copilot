@@ -1,5 +1,26 @@
-import { ButtonHTMLAttributes } from "react";
+import { MouseEventHandler, ReactNode } from "react";
+import { SubmitButton } from "@/components/submit-button";
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface Props {
+  ["data-testid"]?: string;
+  children: ReactNode;
+  disabled?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+}
 
-export const Button = (props: Props) => <button {...props} />;
+const Button = ({
+  "data-testid": testId = "button",
+  children,
+  disabled,
+  onClick,
+}: Props) => {
+  return (
+    <button data-testid={testId} disabled={disabled} onClick={onClick}>
+      {children}
+    </button>
+  );
+};
+
+Button.Submit = SubmitButton;
+
+export { Button };

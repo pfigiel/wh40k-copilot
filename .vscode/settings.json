@@ -1,5 +1,11 @@
 {
-  "cSpell.words": ["boltstorm", "fragstorm", "tailwindcss", "warhammer"],
+  "cSpell.words": [
+    "boltstorm",
+    "fragstorm",
+    "tailwindcss",
+    "testid",
+    "warhammer"
+  ],
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.associations": {
