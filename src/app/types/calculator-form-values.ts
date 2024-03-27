@@ -1,18 +1,25 @@
+import { Dice } from "./dice";
+
 export interface CalculatorFormValues {
   weaponProfiles: {
-    attacks: string;
-    skill: string;
-    strength: string;
-    armourPenetration: string;
-    damage: string;
-    weaponsCount: string;
+    attacks?: {
+      // isFixed: boolean;
+      value?: number;
+      // dice: Dice;
+      // diceCount: number;
+    };
+    skill?: number;
+    strength?: number;
+    armourPenetration?: number;
+    damage?: number;
+    weaponsCount?: number;
   }[];
   defenderProfile: {
-    toughness: string;
-    armourSave: string;
-    invulnerableSave: string;
-    feelNoPain: string;
-    wounds: string;
-    modelsCount: string;
+    toughness?: number;
+    armourSave?: number;
+    invulnerableSave?: number;
+    feelNoPain?: number;
+    wounds?: number;
+    modelsCount?: number;
   };
 }

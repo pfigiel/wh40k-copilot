@@ -1,6 +1,6 @@
 import { allocateWounds } from "./utils/allocate-wounds";
 import { DefenderProfile } from "./entities/defender-profile";
-import { Dice } from "./types/dice";
+import { Dice } from "@/types/dice";
 import { performHitRolls } from "./utils/perform-hit-rolls";
 import { range } from "./utils/range";
 import { resolveSave } from "./utils/resolveSave";

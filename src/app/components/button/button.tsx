@@ -15,7 +15,12 @@ const Button = ({
   onClick,
 }: Props) => {
   return (
-    <button data-testid={testId} disabled={disabled} onClick={onClick}>
+    <button
+      data-testid={testId}
+      className="border border-slate-300 p-3"
+      disabled={disabled}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

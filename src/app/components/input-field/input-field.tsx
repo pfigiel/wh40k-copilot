@@ -1,7 +1,7 @@
 import { FocusEvent } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
-import { InputProps } from "../types/input-props";
-import { Input } from "../input/input";
+import { InputProps } from "@/types/input-props";
+import { Input } from "@/components/input";
 
 export interface Props<TFieldValues extends FieldValues> extends InputProps {
   control: Control<TFieldValues>;
@@ -9,6 +9,7 @@ export interface Props<TFieldValues extends FieldValues> extends InputProps {
 }
 
 export const InputField = <TFieldValues extends FieldValues>({
+  "data-testid": testId = "input-field",
   control,
   name,
   onBlur,
@@ -28,6 +29,7 @@ export const InputField = <TFieldValues extends FieldValues>({
 
       return (
         <Input
+          data-testid={testId}
           {...fieldProps}
           {...inputProps}
           invalid={invalid}

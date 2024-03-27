@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { FocusEvent, useState } from "react";
 
 export const Input = ({
-  className,
+  "data-testid": testId = "input",
   name,
   label,
   value,
@@ -41,9 +41,10 @@ export const Input = ({
   };
 
   return (
-    <div className={"relative flex py-2"}>
+    <div data-testid={testId} className={"relative flex py-2"}>
       {label && (
         <label
+          data-testid={`${testId}__label`}
           className={classNames(
             "absolute bg-slate-800 left-2 transition-all",
             { "text-slate-500 top-3 cursor-text": !isLabelFloating },
@@ -59,6 +60,7 @@ export const Input = ({
       )}
       <input
         {...props}
+        data-testid={`${testId}__field`}
         className="bg-slate-800 border border-1 border-slate-300 h-8 p-2"
         id={name}
         ref={localRefCallback}

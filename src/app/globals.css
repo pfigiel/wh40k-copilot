@@ -4,6 +4,7 @@
 
 button,
 div,
-h1 {
+h1,
+input {
   color: rgb(203 213 225); /* slate-300 */
 }

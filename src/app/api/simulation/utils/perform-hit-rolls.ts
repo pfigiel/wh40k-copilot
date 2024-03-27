@@ -1,4 +1,4 @@
-import { Dice } from "../types/dice";
+import { Dice } from "@/types/dice";
 import { RerollStrategy } from "../types/reroll-strategy";
 import { RerollType } from "../types/reroll-type";
 import { resolveHit } from "./resolve-hit";

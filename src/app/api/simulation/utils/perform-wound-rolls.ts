@@ -1,6 +1,6 @@
 import { DefenderProfile } from "../entities/defender-profile";
 import { WeaponProfile } from "../entities/weapon-profile";
-import { Dice } from "../types/dice";
+import { Dice } from "@/types/dice";
 import { RerollStrategy } from "../types/reroll-strategy";
 import { RerollType } from "../types/reroll-type";
 import { WeaponAttributeType } from "../types/weapon-attribute";

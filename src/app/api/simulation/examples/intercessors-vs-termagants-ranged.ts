@@ -1,5 +1,5 @@
 import { DefenderProfile } from "../entities/defender-profile";
-import { Dice } from "../types/dice";
+import { Dice } from "@/types/dice";
 import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
 import { RandomizedAttacksAttribute } from "../types/randomized-attacks-attribute";
 import { range } from "../utils/range";

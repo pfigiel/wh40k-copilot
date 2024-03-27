@@ -9,5 +9,11 @@ export const SubmitButton = ({
   value,
   disabled,
 }: Props) => (
-  <input data-testid={testId} type="submit" value={value} disabled={disabled} />
+  <input
+    data-testid={testId}
+    className="cursor-pointer border border-slate-300"
+    type="submit"
+    value={value}
+    disabled={disabled}
+  />
 );

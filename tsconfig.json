@@ -11,7 +11,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
@@ -21,7 +21,9 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/components/*": ["./src/app/components/*"],
-      "@/test/*": ["./src/app/test/*"]
+      "@/hooks/*": ["./src/app/hooks/*"],
+      "@/test/*": ["./src/app/test/*"],
+      "@/types/*": ["./src/app/types/*"]
     },
     "types": ["@testing-library/jest-dom"]
   },
