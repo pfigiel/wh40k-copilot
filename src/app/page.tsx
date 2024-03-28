@@ -1,34 +1,20 @@
 "use client";
 
+import { SimulationRequestDto } from "./dtos/simulation-request-dto";
+import { SimulationFormValues } from "./types/simulation-form-values";
+import { simulationFormValuesToDto } from "./utils/simulation-form-values-to-dto";
 import { Button, InputField, Section, StatisticsSummary } from "@/components";
 import { useSimulationResult as useSimulationResults } from "@/hooks/useSimulationResult";
-import { CalculatorFormValues } from "@/types/calculator-form-values";
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 
 const Home = () => {
   const [submittedFormValues, submitFormValues] =
-    useState<CalculatorFormValues>();
+    useState<SimulationRequestDto>();
 
-  const { control, handleSubmit } = useForm<CalculatorFormValues>({
-    // TODO: consider removing
+  const { control, handleSubmit } = useForm<SimulationFormValues>({
     defaultValues: {
-      weaponProfiles: [
-        {
-          attacks: { value: 2, isFixed: true },
-          skill: 3,
-          strength: 4,
-          armourPenetration: 0,
-          damage: 1,
-          weaponsCount: 10,
-        },
-      ],
-      defenderProfile: {
-        toughness: 3,
-        armourSave: 5,
-        wounds: 1,
-        modelsCount: 10,
-      },
+      weaponProfiles: [{}],
     },
   });
 
@@ -47,8 +33,8 @@ const Home = () => {
     remove(index);
   };
 
-  const onSubmit = (data: CalculatorFormValues) => {
-    submitFormValues(data);
+  const onSubmit = (data: SimulationFormValues) => {
+    submitFormValues(simulationFormValuesToDto(data));
   };
 
   return (
@@ -62,7 +48,7 @@ const Home = () => {
                   label="Attacks (A)"
                   control={control}
                   required
-                  name={`weaponProfiles.${index}.attacks.value`}
+                  name={`weaponProfiles.${index}.attacks`}
                 />
                 <InputField
                   label="Ballistic Skill (BS)"

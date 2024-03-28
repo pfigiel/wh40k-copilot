@@ -1,15 +1,15 @@
+import { SimulationRequestDto } from "@/dtos/simulation-request-dto";
 import { SimulationResponseDto } from "@/dtos/simulation-response-dto";
-import { CalculatorFormValues } from "@/types/calculator-form-values";
 import { SimulationResults } from "@/types/simulation-results";
 import useSWR from "swr";
 
-export const useSimulationResult = (formValues?: CalculatorFormValues) => {
+export const useSimulationResult = (dto?: SimulationRequestDto) => {
   const { data, error, isLoading } = useSWR<SimulationResponseDto>(
-    formValues ? "api/simulation" : null,
-    (path: string) =>
+    dto ? ["api/simulation", JSON.stringify(dto)] : null,
+    ([path]) =>
       fetch(path, {
         method: "POST",
-        body: JSON.stringify(formValues),
+        body: JSON.stringify(dto),
       }).then((res) => res.json()),
   );
 

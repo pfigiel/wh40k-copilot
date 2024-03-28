@@ -3,10 +3,10 @@ import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
 import { AttacksAttribute } from "../types/attacks-attribute";
 import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
 import { RandomizedAttacksAttribute } from "../types/randomized-attacks-attribute";
-import { SimulationDto } from "@/app/dtos/simulation-request-dto";
+import { SimulationRequestDto } from "@/app/dtos/simulation-request-dto";
 
 export const simulationDtoToProfiles = (
-  dto: SimulationDto,
+  dto: SimulationRequestDto,
 ): {
   weaponProfiles: WeaponProfileEntity[];
   defenderProfile: DefenderProfileEntity;
