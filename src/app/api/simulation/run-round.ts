@@ -92,10 +92,7 @@ const resolveWoundsAndSaves = (
 ) => {
   if (!isAutoWound) {
     // TODO: apply rules around critical wounds
-    const { isWound, isCriticalWound } = performWoundRolls(
-      weaponProfile,
-      defenderProfiles,
-    );
+    const { isWound } = performWoundRolls(weaponProfile, defenderProfiles);
 
     if (!isWound) {
       return;

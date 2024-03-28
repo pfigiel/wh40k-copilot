@@ -23,7 +23,7 @@ export const Input = ({
     null,
   );
 
-  const isLabelFloating = !!value || isInputFocused;
+  const isLabelFloating = value !== undefined || isInputFocused;
 
   const onLocalFocus = (event: FocusEvent<HTMLInputElement>) => {
     setInputFocused(true);
@@ -47,7 +47,7 @@ export const Input = ({
           data-testid={`${testId}__label`}
           className={classNames(
             "absolute left-2 bg-slate-800 transition-all",
-            { "top-3 cursor-text text-slate-500": !isLabelFloating },
+            { "top-4 cursor-text text-slate-500": !isLabelFloating },
             {
               "-top-1 text-sm text-slate-300": isLabelFloating,
             },

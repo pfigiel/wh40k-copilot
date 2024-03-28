@@ -1,7 +1,7 @@
 "use client";
 
-import { Button, H1, InputField } from "@/components";
-import { useSimulationResult } from "@/hooks/useSimulationResult";
+import { Button, InputField, Section, StatisticsSummary } from "@/components";
+import { useSimulationResult as useSimulationResults } from "@/hooks/useSimulationResult";
 import { CalculatorFormValues } from "@/types/calculator-form-values";
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -37,8 +37,7 @@ const Home = () => {
     name: "weaponProfiles",
   });
 
-  const { simulationResult, simulationError, isSimulationLoading } =
-    useSimulationResult(submittedFormValues);
+  const { simulationResults } = useSimulationResults(submittedFormValues);
 
   const onAddWeaponProfileClick = () => {
     append({});
@@ -53,11 +52,10 @@ const Home = () => {
   };
 
   return (
-    <main>
-      <form className={"flex flex-col"} onSubmit={handleSubmit(onSubmit)}>
-        <div className={"flex"}>
-          <section className={"w-1/2"}>
-            <H1>Weapon profiles</H1>
+    <main className="p-8">
+      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex gap-8">
+          <Section className="w-1/2" title="Weapon profiles">
             {fields.map((field, index) => (
               <div key={field.id}>
                 <InputField
@@ -106,9 +104,8 @@ const Home = () => {
             <Button onClick={onAddWeaponProfileClick}>
               Add weapon profile
             </Button>
-          </section>
-          <section>
-            <H1>Defender profile</H1>
+          </Section>
+          <Section className="w-1/2" title="Defender profile">
             <InputField
               label="Toughness (T)"
               control={control}
@@ -145,10 +142,11 @@ const Home = () => {
               required
               name="defenderProfile.modelsCount"
             />
-          </section>
+          </Section>
         </div>
-        <Button.Submit value="Run simulation" />
+        <Button.Submit className="my-8" value="Run simulation" />
       </form>
+      <StatisticsSummary results={simulationResults} />
     </main>
   );
 };
