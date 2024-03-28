@@ -4,14 +4,16 @@ import { roll } from "../utils/roll";
 
 export class RandomizedAttacksAttribute implements AttacksAttribute {
   private dice: Dice;
+  private diceCount: number;
   private modifier: number;
 
-  public constructor(dice: number, modifier?: number) {
+  public constructor(dice: Dice, diceCount: number = 1, modifier: number = 0) {
     this.dice = dice;
-    this.modifier = modifier ?? 0;
+    this.diceCount = diceCount;
+    this.modifier = modifier;
   }
 
   public resolve() {
-    return roll(this.dice) + this.modifier;
+    return this.diceCount * roll(this.dice) + this.modifier;
   }
 }

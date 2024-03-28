@@ -1,9 +1,9 @@
 import { checkWound } from "./check-wound";
-import { WeaponProfile } from "../entities/weapon-profile";
+import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
 
 export const resolveWound = (
   rollResult: number,
-  weaponProfile: WeaponProfile,
+  weaponProfile: WeaponProfileEntity,
   toughness: number,
   modifiers?: {
     criticalModifier?: number;

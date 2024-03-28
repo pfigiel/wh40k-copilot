@@ -1,4 +1,4 @@
-import { DefenderProfile } from "../entities/defender-profile";
+import { DefenderProfileEntity } from "../entities/defender-profile-entity";
 import { Dice } from "@/types/dice";
 import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
 import { RandomizedAttacksAttribute } from "../types/randomized-attacks-attribute";
@@ -6,10 +6,10 @@ import { range } from "../utils/range";
 import { RerollType } from "../types/reroll-type";
 import { runSimulation } from "../run-simulation";
 import { WeaponAttributeType } from "../types/weapon-attribute";
-import { WeaponProfile } from "../entities/weapon-profile";
+import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
 
 export const intercessorsVsTermagantsRanged = () => {
-  const boltRifle = new WeaponProfile({
+  const boltRifle = new WeaponProfileEntity({
     armourPenetration: 1,
     skill: 3,
     damage: 1,
@@ -18,7 +18,7 @@ export const intercessorsVsTermagantsRanged = () => {
     hitRerollType: RerollType.ALL,
   });
 
-  const grenadeLauncher = new WeaponProfile({
+  const grenadeLauncher = new WeaponProfileEntity({
     armourPenetration: 0,
     skill: 3,
     damage: 1,
@@ -36,12 +36,12 @@ export const intercessorsVsTermagantsRanged = () => {
     ...range(grenadeLaunchersCount).map(() => grenadeLauncher),
   ];
 
-  const defenderProfile = new DefenderProfile({
+  const defenderProfile = new DefenderProfileEntity({
     armourSave: 5,
     toughness: 3,
     wounds: 1,
+    modelsCount: 20,
   });
-  const modelsCount = 20;
 
-  runSimulation(weaponProfiles, defenderProfile, modelsCount);
+  runSimulation(weaponProfiles, defenderProfile);
 };

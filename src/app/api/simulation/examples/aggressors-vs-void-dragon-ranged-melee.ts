@@ -1,4 +1,4 @@
-import { DefenderProfile } from "../entities/defender-profile";
+import { DefenderProfileEntity } from "../entities/defender-profile-entity";
 import { Dice } from "@/types/dice";
 import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
 import { RandomizedAttacksAttribute } from "../types/randomized-attacks-attribute";
@@ -8,10 +8,10 @@ import { RerollType } from "../types/reroll-type";
 import { runSimulation } from "../run-simulation";
 import { WeaponAttributeType } from "../types/weapon-attribute";
 import { WeaponModifierType } from "../types/weapon-modifier";
-import { WeaponProfile } from "../entities/weapon-profile";
+import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
 
 export const aggressorsVsVoidDragonRangedMelee = () => {
-  const fragstormGrenadeLaunchers = new WeaponProfile({
+  const fragstormGrenadeLaunchers = new WeaponProfileEntity({
     armourPenetration: 1,
     skill: 3,
     damage: 1,
@@ -26,7 +26,7 @@ export const aggressorsVsVoidDragonRangedMelee = () => {
     hitRerollType: RerollType.ALL,
   });
 
-  const autoBoltstormGauntlets = new WeaponProfile({
+  const autoBoltstormGauntlets = new WeaponProfileEntity({
     armourPenetration: 1,
     skill: 3,
     damage: 1,
@@ -42,7 +42,7 @@ export const aggressorsVsVoidDragonRangedMelee = () => {
     hitRerollType: RerollType.ALL,
   });
 
-  const twinPowerFists = new WeaponProfile({
+  const twinPowerFists = new WeaponProfileEntity({
     armourPenetration: 2,
     skill: 3,
     damage: 1,
@@ -67,14 +67,14 @@ export const aggressorsVsVoidDragonRangedMelee = () => {
     ...range(twinPowerFistsCount).map(() => twinPowerFists),
   ];
 
-  const defenderProfile = new DefenderProfile({
+  const defenderProfile = new DefenderProfileEntity({
     armourSave: 4,
     invulnerableSave: 4,
     feelNoPain: 5,
     toughness: 11,
     wounds: 12,
+    modelsCount: 1,
   });
-  const modelsCount = 1;
 
-  runSimulation(weaponProfiles, defenderProfile, modelsCount);
+  runSimulation(weaponProfiles, defenderProfile);
 };

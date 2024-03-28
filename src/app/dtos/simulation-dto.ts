@@ -1,23 +1,7 @@
-import { Dice } from "@/types/dice";
+import { DefenderProfile } from "@/types/defender-profile";
+import { WeaponProfile } from "@/types/weapon-profile";
 
 export interface SimulationDto {
-  weaponProfiles: {
-    attacks: {
-      value: number;
-      dice: Dice;
-    };
-    skill: number;
-    strength: number;
-    armourPenetration: number;
-    damage: number;
-    weaponsCount: number;
-  }[];
-  defenderProfile: {
-    toughness: number;
-    armourSave: number;
-    invulnerableSave: number;
-    feelNoPain: number;
-    wounds: number;
-    modelsCount: number;
-  };
+  weaponProfiles: WeaponProfile[];
+  defenderProfile: DefenderProfile;
 }

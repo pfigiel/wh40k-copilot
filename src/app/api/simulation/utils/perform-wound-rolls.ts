@@ -1,5 +1,5 @@
-import { DefenderProfile } from "../entities/defender-profile";
-import { WeaponProfile } from "../entities/weapon-profile";
+import { DefenderProfileEntity } from "../entities/defender-profile-entity";
+import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
 import { Dice } from "@/types/dice";
 import { RerollStrategy } from "../types/reroll-strategy";
 import { RerollType } from "../types/reroll-type";
@@ -8,8 +8,8 @@ import { resolveWound } from "./resolve-wound";
 import { roll } from "./roll";
 
 export const performWoundRolls = (
-  weaponProfile: WeaponProfile,
-  defenderProfiles: DefenderProfile[]
+  weaponProfile: WeaponProfileEntity,
+  defenderProfiles: DefenderProfileEntity[]
 ) => {
   const woundRoll = roll(Dice.D6);
   let { isWound, isCriticalWound } = resolveWound(

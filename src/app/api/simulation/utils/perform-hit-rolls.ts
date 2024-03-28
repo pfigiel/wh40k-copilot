@@ -3,9 +3,9 @@ import { RerollStrategy } from "../types/reroll-strategy";
 import { RerollType } from "../types/reroll-type";
 import { resolveHit } from "./resolve-hit";
 import { roll } from "./roll";
-import { WeaponProfile } from "../entities/weapon-profile";
+import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
 
-export const performHitRolls = (weaponProfile: WeaponProfile) => {
+export const performHitRolls = (weaponProfile: WeaponProfileEntity) => {
   const hitRoll = roll(Dice.D6);
   let { isHit, isCriticalHit } = resolveHit(hitRoll, weaponProfile);
 

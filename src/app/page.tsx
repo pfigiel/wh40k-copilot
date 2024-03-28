@@ -17,7 +17,7 @@ const Home = () => {
     defaultValues: {
       weaponProfiles: [
         {
-          attacks: { value: 2 },
+          attacks: { value: 2, isFixed: true },
           skill: 3,
           strength: 4,
           armourPenetration: 0,
@@ -66,7 +66,7 @@ const Home = () => {
                   label="Attacks (A)"
                   control={control}
                   required
-                  name={`weaponProfiles.${index}.attacks`}
+                  name={`weaponProfiles.${index}.attacks.value`}
                 />
                 <InputField
                   label="Ballistic Skill (BS)"

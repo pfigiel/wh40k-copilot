@@ -1,5 +1,5 @@
 import { allocateWounds } from "./utils/allocate-wounds";
-import { DefenderProfile } from "./entities/defender-profile";
+import { DefenderProfileEntity } from "./entities/defender-profile-entity";
 import { Dice } from "@/types/dice";
 import { performHitRolls } from "./utils/perform-hit-rolls";
 import { range } from "./utils/range";
@@ -7,71 +7,73 @@ import { resolveSave } from "./utils/resolveSave";
 import { roll } from "./utils/roll";
 import { RoundStatistics } from "./types/round-statistics";
 import { WeaponAttributeType } from "./types/weapon-attribute";
-import { WeaponProfile } from "./entities/weapon-profile";
+import { WeaponProfileEntity } from "./entities/weapon-profile-entity";
 import { performWoundRolls } from "./utils/perform-wound-rolls";
 
 export const runRound = (
-  weaponProfiles: WeaponProfile[],
-  defenderProfiles: DefenderProfile[]
+  weaponProfiles: WeaponProfileEntity[],
+  defenderProfiles: DefenderProfileEntity[]
 ) => {
   const roundStatistics = new RoundStatistics();
   const initialModelsCount = defenderProfiles.length;
 
   weaponProfiles.forEach((weaponProfile) => {
-    const additionalBlastAttacks = weaponProfile.hasAttribute(
-      WeaponAttributeType.BLAST
-    )
-      ? Math.floor(initialModelsCount / 5)
-      : 0;
+    range(weaponProfile.weaponsCount).forEach(() => {
+      const additionalBlastAttacks = weaponProfile.hasAttribute(
+        WeaponAttributeType.BLAST
+      )
+        ? Math.floor(initialModelsCount / 5)
+        : 0;
 
-    range(weaponProfile.attacks.resolve() + additionalBlastAttacks).forEach(
-      () => {
-        if (defenderProfiles.length === 0) {
-          return;
-        }
-
-        const { isHit, isCriticalHit } = performHitRolls(weaponProfile);
-
-        if (!isHit) {
-          return;
-        }
-
-        roundStatistics.hits++;
-
-        const isAutoWound =
-          isCriticalHit &&
-          weaponProfile.hasAttribute(WeaponAttributeType.LETHAL_HITS);
-
-        const sustainedHitsAttribute = weaponProfile.getAttribute(
-          WeaponAttributeType.SUSTAINED_HITS
-        );
-        const sustainedHitsCount = isCriticalHit
-          ? sustainedHitsAttribute?.value ?? 0
-          : 0;
-
-        roundStatistics.sustainedHits += sustainedHitsCount;
-
-        resolveWoundsAndSaves(
-          weaponProfile,
-          defenderProfiles,
-          roundStatistics,
-          isAutoWound
-        );
-
-        range(sustainedHitsCount).forEach(() => {
+      range(weaponProfile.attacks.resolve() + additionalBlastAttacks).forEach(
+        () => {
           if (defenderProfiles.length === 0) {
             return;
           }
+
+          const { isHit, isCriticalHit } = performHitRolls(weaponProfile);
+
+          if (!isHit) {
+            return;
+          }
+
+          roundStatistics.hits++;
+
+          const isAutoWound =
+            isCriticalHit &&
+            weaponProfile.hasAttribute(WeaponAttributeType.LETHAL_HITS);
+
+          const sustainedHitsAttribute = weaponProfile.getAttribute(
+            WeaponAttributeType.SUSTAINED_HITS
+          );
+          const sustainedHitsCount = isCriticalHit
+            ? sustainedHitsAttribute?.value ?? 0
+            : 0;
+
+          roundStatistics.sustainedHits += sustainedHitsCount;
 
           resolveWoundsAndSaves(
             weaponProfile,
             defenderProfiles,
             roundStatistics,
-            false
+            isAutoWound
           );
-        });
-      }
-    );
+
+          range(sustainedHitsCount).forEach(() => {
+            if (defenderProfiles.length === 0) {
+              return;
+            }
+
+            resolveWoundsAndSaves(
+              weaponProfile,
+              defenderProfiles,
+              roundStatistics,
+              false
+            );
+          });
+        }
+      );
+    });
   });
 
   roundStatistics.modelsDestroyed =
@@ -83,8 +85,8 @@ export const runRound = (
 };
 
 const resolveWoundsAndSaves = (
-  weaponProfile: WeaponProfile,
-  defenderProfiles: DefenderProfile[],
+  weaponProfile: WeaponProfileEntity,
+  defenderProfiles: DefenderProfileEntity[],
   roundStatistics: RoundStatistics,
   isAutoWound?: boolean
 ) => {
@@ -115,9 +117,5 @@ const resolveWoundsAndSaves = (
     return;
   }
 
-  roundStatistics.woundsInflicted++;
-  roundStatistics.passedFNPs += allocateWounds(
-    defenderProfiles,
-    weaponProfile.damage
-  );
+  allocateWounds(defenderProfiles, weaponProfile.damage, roundStatistics);
 };

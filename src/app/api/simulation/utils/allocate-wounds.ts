@@ -1,15 +1,16 @@
 import { DamageReductionType } from "../types/damage-reduction-type";
-import { DefenderProfile } from "../entities/defender-profile";
+import { DefenderProfileEntity } from "../entities/defender-profile-entity";
 import { range } from "./range";
 import { Dice } from "@/types/dice";
 import { roll } from "./roll";
+import { RoundStatistics } from "../types/round-statistics";
 
 export const allocateWounds = (
-  defenderProfiles: DefenderProfile[],
-  damage: number
+  defenderProfiles: DefenderProfileEntity[],
+  damage: number,
+  statistics: RoundStatistics
 ) => {
   const woundedDefender = defenderProfiles[0];
-  let passedFNPs = 0;
 
   const damageTaken = (() => {
     switch (woundedDefender.damageReduction) {
@@ -24,13 +25,15 @@ export const allocateWounds = (
 
   if (woundedDefender.feelNoPain === undefined) {
     woundedDefender.woundsRemaining -= damageTaken;
+    statistics.woundsInflicted += damageTaken;
   } else {
     range(damageTaken).forEach(() => {
       const feelNoPainRoll = roll(Dice.D6);
       if (feelNoPainRoll >= woundedDefender.feelNoPain!) {
-        passedFNPs++;
+        statistics.passedFNPs++;
       } else {
         woundedDefender.woundsRemaining -= 1;
+        statistics.woundsInflicted += 1;
       }
     });
   }
@@ -38,6 +41,4 @@ export const allocateWounds = (
   if (woundedDefender.woundsRemaining <= 0) {
     defenderProfiles.shift();
   }
-
-  return passedFNPs;
 };

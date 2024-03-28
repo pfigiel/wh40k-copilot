@@ -1,25 +1,8 @@
-import { Dice } from "./dice";
+import { SimulationDto } from "@/dtos/simulation-dto";
+import { WeaponProfile } from "./weapon-profile";
+import { DefenderProfile } from "./defender-profile";
 
 export interface CalculatorFormValues {
-  weaponProfiles: {
-    attacks?: {
-      // isFixed: boolean;
-      value?: number;
-      // dice: Dice;
-      // diceCount: number;
-    };
-    skill?: number;
-    strength?: number;
-    armourPenetration?: number;
-    damage?: number;
-    weaponsCount?: number;
-  }[];
-  defenderProfile: {
-    toughness?: number;
-    armourSave?: number;
-    invulnerableSave?: number;
-    feelNoPain?: number;
-    wounds?: number;
-    modelsCount?: number;
-  };
+  weaponProfiles: Partial<WeaponProfile>[];
+  defenderProfile: Partial<DefenderProfile>;
 }

@@ -1,9 +1,9 @@
 import { WeaponModifierType } from "../types/weapon-modifier";
-import { WeaponProfile } from "../entities/weapon-profile";
+import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
 
 export const resolveHit = (
   rollResult: number,
-  weaponProfile: WeaponProfile
+  weaponProfile: WeaponProfileEntity
 ) => {
   const hitModifier =
     weaponProfile.getModifier(WeaponModifierType.HIT_MODIFIER)?.value ?? 0;
