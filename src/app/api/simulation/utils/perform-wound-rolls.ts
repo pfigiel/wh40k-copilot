@@ -9,13 +9,13 @@ import { roll } from "./roll";
 
 export const performWoundRolls = (
   weaponProfile: WeaponProfileEntity,
-  defenderProfiles: DefenderProfileEntity[]
+  defenderProfiles: DefenderProfileEntity[],
 ) => {
   const woundRoll = roll(Dice.D6);
   let { isWound, isCriticalWound } = resolveWound(
     roll(Dice.D6),
     weaponProfile,
-    defenderProfiles[0].toughness
+    defenderProfiles[0].toughness,
   );
 
   const isRerollAvailable =
@@ -41,6 +41,6 @@ export const performWoundRolls = (
   return resolveWound(
     roll(Dice.D6),
     weaponProfile,
-    defenderProfiles[0].toughness
+    defenderProfiles[0].toughness,
   );
 };

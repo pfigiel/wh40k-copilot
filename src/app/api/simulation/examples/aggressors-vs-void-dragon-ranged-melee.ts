@@ -61,7 +61,7 @@ export const aggressorsVsVoidDragonRangedMelee = () => {
 
   const weaponProfiles = [
     ...range(fragstormGrenadeLaunchersCount).map(
-      () => fragstormGrenadeLaunchers
+      () => fragstormGrenadeLaunchers,
     ),
     ...range(autoBoltstormGauntletsCount).map(() => autoBoltstormGauntlets),
     ...range(twinPowerFistsCount).map(() => twinPowerFists),

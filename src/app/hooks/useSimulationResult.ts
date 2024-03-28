@@ -9,7 +9,7 @@ export const useSimulationResult = (formValues?: CalculatorFormValues) => {
       fetch(...args, {
         method: "POST",
         body: JSON.stringify(formValues),
-      }).then((res) => res.json())
+      }).then((res) => res.json()),
   );
 
   return {

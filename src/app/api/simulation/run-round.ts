@@ -12,7 +12,7 @@ import { performWoundRolls } from "./utils/perform-wound-rolls";
 
 export const runRound = (
   weaponProfiles: WeaponProfileEntity[],
-  defenderProfiles: DefenderProfileEntity[]
+  defenderProfiles: DefenderProfileEntity[],
 ) => {
   const roundStatistics = new RoundStatistics();
   const initialModelsCount = defenderProfiles.length;
@@ -20,7 +20,7 @@ export const runRound = (
   weaponProfiles.forEach((weaponProfile) => {
     range(weaponProfile.weaponsCount).forEach(() => {
       const additionalBlastAttacks = weaponProfile.hasAttribute(
-        WeaponAttributeType.BLAST
+        WeaponAttributeType.BLAST,
       )
         ? Math.floor(initialModelsCount / 5)
         : 0;
@@ -44,7 +44,7 @@ export const runRound = (
             weaponProfile.hasAttribute(WeaponAttributeType.LETHAL_HITS);
 
           const sustainedHitsAttribute = weaponProfile.getAttribute(
-            WeaponAttributeType.SUSTAINED_HITS
+            WeaponAttributeType.SUSTAINED_HITS,
           );
           const sustainedHitsCount = isCriticalHit
             ? sustainedHitsAttribute?.value ?? 0
@@ -56,7 +56,7 @@ export const runRound = (
             weaponProfile,
             defenderProfiles,
             roundStatistics,
-            isAutoWound
+            isAutoWound,
           );
 
           range(sustainedHitsCount).forEach(() => {
@@ -68,10 +68,10 @@ export const runRound = (
               weaponProfile,
               defenderProfiles,
               roundStatistics,
-              false
+              false,
             );
           });
-        }
+        },
       );
     });
   });
@@ -88,13 +88,13 @@ const resolveWoundsAndSaves = (
   weaponProfile: WeaponProfileEntity,
   defenderProfiles: DefenderProfileEntity[],
   roundStatistics: RoundStatistics,
-  isAutoWound?: boolean
+  isAutoWound?: boolean,
 ) => {
   if (!isAutoWound) {
     // TODO: apply rules around critical wounds
     const { isWound, isCriticalWound } = performWoundRolls(
       weaponProfile,
-      defenderProfiles
+      defenderProfiles,
     );
 
     if (!isWound) {
@@ -109,7 +109,7 @@ const resolveWoundsAndSaves = (
     roll(Dice.D6),
     weaponProfile.armourPenetration,
     defenderProfiles[0].armourSave,
-    defenderProfiles[0].invulnerableSave
+    defenderProfiles[0].invulnerableSave,
   );
 
   if (saveSuccessful) {

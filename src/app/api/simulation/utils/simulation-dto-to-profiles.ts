@@ -6,7 +6,7 @@ import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
 import { RandomizedAttacksAttribute } from "../types/randomized-attacks-attribute";
 
 export const simulationDtoToProfiles = (
-  dto: SimulationDto
+  dto: SimulationDto,
 ): {
   weaponProfiles: WeaponProfileEntity[];
   defenderProfile: DefenderProfileEntity;
@@ -18,7 +18,7 @@ export const simulationDtoToProfiles = (
       : new RandomizedAttacksAttribute(
           attacks.dice,
           attacks.diceCount,
-          attacks.value
+          attacks.value,
         );
 
     return new WeaponProfileEntity({ attacks: attacksAttribute, ...rest });

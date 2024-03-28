@@ -28,15 +28,15 @@ export class WeaponProfileEntity implements Omit<WeaponProfile, "attacks"> {
 
   public hasAttribute(attributeType: WeaponAttributeType): boolean {
     return this.attributes?.some(
-      (attribute) => attribute.type === attributeType
+      (attribute) => attribute.type === attributeType,
     )!!;
   }
 
   public getAttribute(
-    attributeType: WeaponAttributeType
+    attributeType: WeaponAttributeType,
   ): WeaponAttribute | undefined {
     return this.attributes?.find(
-      (attribute) => attribute.type === attributeType
+      (attribute) => attribute.type === attributeType,
     );
   }
 
@@ -45,14 +45,14 @@ export class WeaponProfileEntity implements Omit<WeaponProfile, "attacks"> {
   }
 
   public getModifier(
-    modifierType: WeaponModifierType
+    modifierType: WeaponModifierType,
   ): WeaponModifier | undefined {
     return this.modifiers?.find((modifier) => modifier.type === modifierType);
   }
 
   public hasRerollStrategy(rerollStrategy: RerollStrategy): boolean {
     return this.rerollStrategies?.some(
-      (strategy) => strategy === rerollStrategy
+      (strategy) => strategy === rerollStrategy,
     )!!;
   }
 }

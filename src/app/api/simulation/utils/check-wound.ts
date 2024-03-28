@@ -1,7 +1,7 @@
 export const checkWound = (
   rollResult: number,
   strength: number,
-  toughness: number
+  toughness: number,
 ) => {
   if (strength >= 2 * toughness) {
     return rollResult >= 2;

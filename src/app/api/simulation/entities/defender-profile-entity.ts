@@ -12,7 +12,7 @@ export class DefenderProfileEntity implements DefenderProfile {
   public damageReduction?: DamageReductionType;
 
   public constructor(
-    initializer: Omit<DefenderProfileEntity, "woundsRemaining">
+    initializer: Omit<DefenderProfileEntity, "woundsRemaining">,
   ) {
     Object.assign(this, initializer);
     this.woundsRemaining = initializer.wounds;

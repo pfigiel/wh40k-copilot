@@ -8,7 +8,7 @@ import { RoundStatistics } from "../types/round-statistics";
 export const allocateWounds = (
   defenderProfiles: DefenderProfileEntity[],
   damage: number,
-  statistics: RoundStatistics
+  statistics: RoundStatistics,
 ) => {
   const woundedDefender = defenderProfiles[0];
 

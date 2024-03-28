@@ -20,7 +20,7 @@ export const Input = ({
 }: any) => {
   const [isInputFocused, setInputFocused] = useState(false);
   const [inputInstance, setInputInstance] = useState<HTMLInputElement | null>(
-    null
+    null,
   );
 
   const isLabelFloating = !!value || isInputFocused;
@@ -46,11 +46,11 @@ export const Input = ({
         <label
           data-testid={`${testId}__label`}
           className={classNames(
-            "absolute bg-slate-800 left-2 transition-all",
-            { "text-slate-500 top-3 cursor-text": !isLabelFloating },
+            "absolute left-2 bg-slate-800 transition-all",
+            { "top-3 cursor-text text-slate-500": !isLabelFloating },
             {
               "-top-1 text-sm text-slate-300": isLabelFloating,
-            }
+            },
           )}
           htmlFor={name}
           onClick={() => !isLabelFloating && inputInstance?.focus()}
@@ -61,7 +61,7 @@ export const Input = ({
       <input
         {...props}
         data-testid={`${testId}__field`}
-        className="bg-slate-800 border border-1 border-slate-300 h-8 p-2"
+        className="border-1 h-8 border border-slate-300 bg-slate-800 p-2"
         id={name}
         ref={localRefCallback}
         value={value ?? ""}

@@ -8,12 +8,12 @@ export const resolveWound = (
   modifiers?: {
     criticalModifier?: number;
     woundModifier?: number;
-  }
+  },
 ) => {
   const isWound = checkWound(
     rollResult + (modifiers?.woundModifier ?? 0),
     weaponProfile.strength,
-    toughness
+    toughness,
   );
   const isCriticalWound = rollResult + (modifiers?.criticalModifier ?? 0) >= 6;
 

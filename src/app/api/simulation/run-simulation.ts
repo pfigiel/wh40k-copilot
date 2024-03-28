@@ -7,7 +7,7 @@ import { WeaponProfileEntity } from "./entities/weapon-profile-entity";
 
 export const runSimulation = (
   weaponProfiles: WeaponProfileEntity[],
-  defenderProfile: DefenderProfileEntity
+  defenderProfile: DefenderProfileEntity,
 ) => {
   const statistics: RoundStatistics[] = [];
 

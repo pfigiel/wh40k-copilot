@@ -40,7 +40,7 @@ describe("Input", () => {
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={jest.fn()}
-      />
+      />,
     );
   };
 
@@ -107,7 +107,7 @@ describe("Input", () => {
 
     // then
     expect(getByTestId(`${testId}__field`).getAttribute("placeholder")).toBe(
-      placeholder
+      placeholder,
     );
   });
 });

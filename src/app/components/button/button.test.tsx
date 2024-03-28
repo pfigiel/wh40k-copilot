@@ -20,7 +20,7 @@ describe("Button", () => {
 
     // then
     expect(
-      within(getByTestId(testId)).getByTestId(childTestId)
+      within(getByTestId(testId)).getByTestId(childTestId),
     ).toBeInTheDocument();
   });
 

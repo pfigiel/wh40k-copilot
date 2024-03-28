@@ -7,6 +7,6 @@ export const aggregateStatistics = (statistics: RoundStatistics[]) => ({
   saves: average(statistics.map((statistic) => statistic.saves)),
   fnps: average(statistics.map((statistic) => statistic.passedFNPs)),
   woundsInflicted: average(
-    statistics.map((statistic) => statistic.woundsInflicted)
+    statistics.map((statistic) => statistic.woundsInflicted),
   ),
 });
