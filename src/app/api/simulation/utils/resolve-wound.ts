@@ -1,5 +1,5 @@
-import { checkWound } from "./check-wound";
 import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
+import { checkWound } from "./check-wound";
 
 export const resolveWound = (
   rollResult: number,

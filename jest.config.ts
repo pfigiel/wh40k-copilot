@@ -6,6 +6,7 @@ const config: Config = {
   coverageDirectory: "coverage",
   coverageProvider: "v8",
   moduleNameMapper: {
+    "^@/components$": "<rootDir>/src/app/components",
     "^@/components/(.*)$": "<rootDir>/src/app/components/$1",
     "^@/dtos/(.*)$": "<rootDir>/src/app/dtos/$1",
     "^@/hooks/(.*)$": "<rootDir>/src/app/hooks/$1",

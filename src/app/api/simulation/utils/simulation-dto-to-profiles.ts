@@ -1,9 +1,9 @@
-import { SimulationDto } from "@/app/dtos/simulation-dto";
-import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
 import { DefenderProfileEntity } from "../entities/defender-profile-entity";
+import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
 import { AttacksAttribute } from "../types/attacks-attribute";
 import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
 import { RandomizedAttacksAttribute } from "../types/randomized-attacks-attribute";
+import { SimulationDto } from "@/app/dtos/simulation-dto";
 
 export const simulationDtoToProfiles = (
   dto: SimulationDto,

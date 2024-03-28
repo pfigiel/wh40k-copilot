@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
-import "./reset.css";
 import "./globals.css";
+import "./reset.css";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "WH40K Copilot",

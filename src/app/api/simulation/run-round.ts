@@ -1,14 +1,14 @@
-import { allocateWounds } from "./utils/allocate-wounds";
 import { DefenderProfileEntity } from "./entities/defender-profile-entity";
-import { Dice } from "@/types/dice";
+import { WeaponProfileEntity } from "./entities/weapon-profile-entity";
+import { RoundStatistics } from "./types/round-statistics";
+import { WeaponAttributeType } from "./types/weapon-attribute";
+import { allocateWounds } from "./utils/allocate-wounds";
 import { performHitRolls } from "./utils/perform-hit-rolls";
+import { performWoundRolls } from "./utils/perform-wound-rolls";
 import { range } from "./utils/range";
 import { resolveSave } from "./utils/resolveSave";
 import { roll } from "./utils/roll";
-import { RoundStatistics } from "./types/round-statistics";
-import { WeaponAttributeType } from "./types/weapon-attribute";
-import { WeaponProfileEntity } from "./entities/weapon-profile-entity";
-import { performWoundRolls } from "./utils/perform-wound-rolls";
+import { Dice } from "@/types/dice";
 
 export const runRound = (
   weaponProfiles: WeaponProfileEntity[],

@@ -1,6 +1,6 @@
+import { FormControlProps } from "@/types/form-control-props";
+import { ValidationProps } from "@/types/validation-props";
 import { InputHTMLAttributes } from "react";
-import { FormControlProps } from "./form-control-props";
-import { ValidationProps } from "./validation-props";
 
 export interface InputProps
   extends InputHTMLAttributes<HTMLInputElement>,

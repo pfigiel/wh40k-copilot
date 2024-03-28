@@ -1,4 +1,3 @@
-import { WeaponProfile } from "@/types/weapon-profile";
 import { AttacksAttribute } from "../types/attacks-attribute";
 import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
 import { RerollStrategy } from "../types/reroll-strategy";
@@ -8,6 +7,7 @@ import {
   WeaponAttributeType,
 } from "../types/weapon-attribute";
 import { WeaponModifier, WeaponModifierType } from "../types/weapon-modifier";
+import { WeaponProfile } from "@/types/weapon-profile";
 
 export class WeaponProfileEntity implements Omit<WeaponProfile, "attacks"> {
   public armourPenetration: number = 0;

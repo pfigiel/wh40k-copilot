@@ -1,7 +1,7 @@
+import { InputProps } from "@/components/input";
+import { Input } from "@/components/input";
 import { FocusEvent } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
-import { InputProps } from "@/types/input-props";
-import { Input } from "@/components/input";
 
 export interface Props<TFieldValues extends FieldValues> extends InputProps {
   control: Control<TFieldValues>;

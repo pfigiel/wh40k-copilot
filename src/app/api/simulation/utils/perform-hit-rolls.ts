@@ -1,9 +1,9 @@
-import { Dice } from "@/types/dice";
+import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
 import { RerollStrategy } from "../types/reroll-strategy";
 import { RerollType } from "../types/reroll-type";
 import { resolveHit } from "./resolve-hit";
 import { roll } from "./roll";
-import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
+import { Dice } from "@/types/dice";
 
 export const performHitRolls = (weaponProfile: WeaponProfileEntity) => {
   const hitRoll = roll(Dice.D6);

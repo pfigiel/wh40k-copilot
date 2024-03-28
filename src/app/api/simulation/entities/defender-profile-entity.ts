@@ -1,5 +1,5 @@
-import { DefenderProfile } from "@/app/types/defender-profile";
 import { DamageReductionType } from "../types/damage-reduction-type";
+import { DefenderProfile } from "@/app/types/defender-profile";
 
 export class DefenderProfileEntity implements DefenderProfile {
   public armourSave: number = 6;

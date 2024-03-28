@@ -1,5 +1,5 @@
-import { createMockChildren } from "@/test/utils";
 import { Button, Props } from "./button";
+import { createMockChildren } from "@/test/utils";
 import { fireEvent, render, within } from "@testing-library/react";
 
 describe("Button", () => {

@@ -1,5 +1,5 @@
-import { WeaponModifierType } from "../types/weapon-modifier";
 import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
+import { WeaponModifierType } from "../types/weapon-modifier";
 
 export const resolveHit = (
   rollResult: number,

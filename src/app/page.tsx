@@ -1,12 +1,10 @@
 "use client";
 
-import { useFieldArray, useForm } from "react-hook-form";
-import { CalculatorFormValues } from "./types/calculator-form-values";
-import { H1 } from "./components/h1/h1";
-import { InputField } from "./components/input-field/input-field";
-import { Button } from "./components/button/button";
+import { Button, H1, InputField } from "@/components";
 import { useSimulationResult } from "@/hooks/useSimulationResult";
+import { CalculatorFormValues } from "@/types/calculator-form-values";
 import { useState } from "react";
+import { useFieldArray, useForm } from "react-hook-form";
 
 const Home = () => {
   const [submittedFormValues, submitFormValues] =

@@ -1,9 +1,9 @@
 import { config } from "./config";
 import { DefenderProfileEntity } from "./entities/defender-profile-entity";
-import { range } from "./utils/range";
-import { RoundStatistics } from "./types/round-statistics";
-import { runRound } from "./run-round";
 import { WeaponProfileEntity } from "./entities/weapon-profile-entity";
+import { runRound } from "./run-round";
+import { RoundStatistics } from "./types/round-statistics";
+import { range } from "./utils/range";
 
 export const runSimulation = (
   weaponProfiles: WeaponProfileEntity[],

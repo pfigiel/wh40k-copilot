@@ -1,14 +1,14 @@
 import { DefenderProfileEntity } from "../entities/defender-profile-entity";
-import { Dice } from "@/types/dice";
+import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
+import { runSimulation } from "../run-simulation";
 import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
 import { RandomizedAttacksAttribute } from "../types/randomized-attacks-attribute";
-import { range } from "../utils/range";
 import { RerollStrategy } from "../types/reroll-strategy";
 import { RerollType } from "../types/reroll-type";
-import { runSimulation } from "../run-simulation";
 import { WeaponAttributeType } from "../types/weapon-attribute";
 import { WeaponModifierType } from "../types/weapon-modifier";
-import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
+import { range } from "../utils/range";
+import { Dice } from "@/types/dice";
 
 export const aggressorsVsVoidDragonRangedMelee = () => {
   const fragstormGrenadeLaunchers = new WeaponProfileEntity({

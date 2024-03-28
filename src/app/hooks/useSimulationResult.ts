@@ -1,8 +1,7 @@
-import useSWR from "swr";
 import { CalculatorFormValues } from "@/types/calculator-form-values";
+import useSWR from "swr";
 
 export const useSimulationResult = (formValues?: CalculatorFormValues) => {
-  console.log("Hook form values: ", formValues);
   const { data, error, isLoading } = useSWR(
     formValues ? "api/simulation" : null,
     (...args) =>

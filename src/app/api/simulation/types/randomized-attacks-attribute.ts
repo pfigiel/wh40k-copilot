@@ -1,6 +1,6 @@
+import { roll } from "../utils/roll";
 import { AttacksAttribute } from "./attacks-attribute";
 import { Dice } from "@/types/dice";
-import { roll } from "../utils/roll";
 
 export class RandomizedAttacksAttribute implements AttacksAttribute {
   private dice: Dice;
