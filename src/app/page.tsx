@@ -14,8 +14,24 @@ const Home = () => {
 
   const { control, handleSubmit } = useForm<SimulationFormValues>({
     defaultValues: {
-      weaponGroups: [{}],
-      defenderGroups: [{}],
+      weaponGroups: [
+        {
+          attacks: "2",
+          skill: "3",
+          strength: "4",
+          armourPenetration: "1",
+          damage: "1",
+          weaponsCount: "10",
+        },
+      ],
+      defenderGroups: [
+        {
+          toughness: "3",
+          armourSave: "5",
+          wounds: "1",
+          modelsCount: "10",
+        },
+      ],
     },
   });
 

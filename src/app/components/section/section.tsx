@@ -10,6 +10,7 @@ interface HeadingProps {
 
 interface Props extends HeadingProps {
   className?: string;
+  style?: React.CSSProperties;
   title: string;
 }
 
@@ -38,15 +39,25 @@ const Heading = ({ level = 1, children }: HeadingProps) => {
   }
 };
 
-export const Section = ({ children, className, level, title }: Props) => (
+export const Section = ({
+  children,
+  className,
+  level,
+  style,
+  title,
+}: Props) => (
   <section
     className={classNames(
       "relative border border-solid border-slate-300 p-6 pt-8",
       {
         "p-4 pt-5": level == 2,
       },
+      {
+        "p-3 pt-4": level == 3,
+      },
       className,
     )}
+    style={style}
   >
     <Heading level={level}>{title}</Heading>
     {children}

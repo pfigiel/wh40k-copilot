@@ -1,10 +1,10 @@
+import { disableSwrRevalidationOptions } from "../constants/disable-swr-revalidation-options";
 import { SimulationRequestDto } from "@/dtos/simulation-request-dto";
 import { SimulationResponseDto } from "@/dtos/simulation-response-dto";
 import { SimulationResults } from "@/types/simulation-results";
 import useSWR from "swr";
 
 export const useSimulationResult = (dto?: SimulationRequestDto) => {
-  console.log(dto);
   const { data, error, isLoading } = useSWR<SimulationResponseDto>(
     dto ? ["api/simulation", JSON.stringify(dto)] : null,
     ([path]) =>
@@ -12,6 +12,7 @@ export const useSimulationResult = (dto?: SimulationRequestDto) => {
         method: "POST",
         body: JSON.stringify(dto),
       }).then((res) => res.json()),
+    disableSwrRevalidationOptions,
   );
 
   return {
