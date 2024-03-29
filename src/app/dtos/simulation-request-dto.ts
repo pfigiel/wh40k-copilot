@@ -1,7 +1,7 @@
-import { DefenderProfile } from "@/types/defender-profile";
-import { WeaponProfile } from "@/types/weapon-profile";
+import { DefenderGroup } from "@/types/defender-group";
+import { WeaponGroup } from "@/types/weapon-group";
 
 export interface SimulationRequestDto {
-  weaponProfiles: WeaponProfile[];
-  defenderProfile: DefenderProfile;
+  weaponGroups: WeaponGroup[];
+  defenderGroups: DefenderGroup[];
 }

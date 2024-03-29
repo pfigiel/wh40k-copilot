@@ -1,5 +1,5 @@
-import { DefenderProfileEntity } from "../entities/defender-profile-entity";
-import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
+import { DefenderEntity } from "../entities/defender-entity";
+import { WeaponEntity } from "../entities/weapon-entity";
 import { RerollStrategy } from "../types/reroll-strategy";
 import { RerollType } from "../types/reroll-type";
 import { WeaponAttributeType } from "../types/weapon-attribute";
@@ -8,23 +8,23 @@ import { roll } from "./roll";
 import { Dice } from "@/types/dice";
 
 export const performWoundRolls = (
-  weaponProfile: WeaponProfileEntity,
-  defenderProfiles: DefenderProfileEntity[],
+  weapon: WeaponEntity,
+  defenders: DefenderEntity[],
 ) => {
   const woundRoll = roll(Dice.D6);
   let { isWound, isCriticalWound } = resolveWound(
     roll(Dice.D6),
-    weaponProfile,
-    defenderProfiles[0].toughness,
+    weapon,
+    defenders[0].toughness,
   );
 
   const isRerollAvailable =
-    weaponProfile.woundRerollType === RerollType.ALL ||
-    weaponProfile.hasAttribute(WeaponAttributeType.TWIN_LINKED) ||
-    (woundRoll === 1 && weaponProfile.woundRerollType === RerollType.ONES);
+    weapon.woundRerollType === RerollType.ALL ||
+    weapon.hasAttribute(WeaponAttributeType.TWIN_LINKED) ||
+    (woundRoll === 1 && weapon.woundRerollType === RerollType.ONES);
 
   const shouldRerollByFishingStrategy =
-    weaponProfile.hasRerollStrategy(RerollStrategy.FISH_FOR_CRITICAL_WOUNDS) &&
+    weapon.hasRerollStrategy(RerollStrategy.FISH_FOR_CRITICAL_WOUNDS) &&
     !isCriticalWound;
 
   const shouldRerollByDefaultStrategy =
@@ -38,9 +38,5 @@ export const performWoundRolls = (
     return { isWound, isCriticalWound };
   }
 
-  return resolveWound(
-    roll(Dice.D6),
-    weaponProfile,
-    defenderProfiles[0].toughness,
-  );
+  return resolveWound(roll(Dice.D6), weapon, defenders[0].toughness);
 };

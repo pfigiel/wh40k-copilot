@@ -1,20 +1,20 @@
-import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
+import { WeaponEntity } from "../entities/weapon-entity";
 import { RerollStrategy } from "../types/reroll-strategy";
 import { RerollType } from "../types/reroll-type";
 import { resolveHit } from "./resolve-hit";
 import { roll } from "./roll";
 import { Dice } from "@/types/dice";
 
-export const performHitRolls = (weaponProfile: WeaponProfileEntity) => {
+export const performHitRolls = (weapon: WeaponEntity) => {
   const hitRoll = roll(Dice.D6);
-  let { isHit, isCriticalHit } = resolveHit(hitRoll, weaponProfile);
+  let { isHit, isCriticalHit } = resolveHit(hitRoll, weapon);
 
   const isRerollAvailable =
-    weaponProfile.hitRerollType === RerollType.ALL ||
-    (hitRoll === 1 && weaponProfile.hitRerollType === RerollType.ONES);
+    weapon.hitRerollType === RerollType.ALL ||
+    (hitRoll === 1 && weapon.hitRerollType === RerollType.ONES);
 
   const shouldRerollByFishingStrategy =
-    weaponProfile.hasRerollStrategy(RerollStrategy.FISH_FOR_CRITICAL_HITS) &&
+    weapon.hasRerollStrategy(RerollStrategy.FISH_FOR_CRITICAL_HITS) &&
     !isCriticalHit;
 
   const shouldRerollByDefaultStrategy =
@@ -28,5 +28,5 @@ export const performHitRolls = (weaponProfile: WeaponProfileEntity) => {
     return { isHit, isCriticalHit };
   }
 
-  return resolveHit(roll(Dice.D6), weaponProfile);
+  return resolveHit(roll(Dice.D6), weapon);
 };

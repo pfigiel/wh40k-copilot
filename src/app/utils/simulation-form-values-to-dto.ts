@@ -6,28 +6,28 @@ export const simulationFormValuesToDto = (
 ): SimulationRequestDto | undefined => {
   try {
     return {
-      weaponProfiles: formValues.weaponProfiles.map((weaponProfile) => ({
+      weaponGroups: formValues.weaponGroups.map((weaponGroup) => ({
         // TODO: handle randomized attacks
-        attacks: { isFixed: true, value: parseInt(weaponProfile.attacks!) },
-        skill: parseInt(weaponProfile.skill!),
-        strength: parseInt(weaponProfile.strength!),
-        armourPenetration: parseInt(weaponProfile.armourPenetration!),
-        damage: parseInt(weaponProfile.damage!),
-        weaponsCount: parseInt(weaponProfile.weaponsCount!),
+        attacks: { isFixed: true, value: parseInt(weaponGroup.attacks!) },
+        skill: parseInt(weaponGroup.skill!),
+        strength: parseInt(weaponGroup.strength!),
+        armourPenetration: parseInt(weaponGroup.armourPenetration!),
+        damage: parseInt(weaponGroup.damage!),
+        weaponsCount: parseInt(weaponGroup.weaponsCount!),
       })),
-      defenderProfile: {
-        toughness: parseInt(formValues.defenderProfile.toughness!),
-        armourSave: parseInt(formValues.defenderProfile.armourSave!),
+      defenderGroups: formValues.defenderGroups.map((defenderGroup) => ({
+        toughness: parseInt(defenderGroup.toughness!),
+        armourSave: parseInt(defenderGroup.armourSave!),
         invulnerableSave:
-          formValues.defenderProfile.invulnerableSave !== undefined
-            ? parseInt(formValues.defenderProfile.invulnerableSave!)
+          defenderGroup.invulnerableSave !== undefined
+            ? parseInt(defenderGroup.invulnerableSave!)
             : undefined,
-        feelNoPain: formValues.defenderProfile.feelNoPain
-          ? parseInt(formValues.defenderProfile.feelNoPain!)
+        feelNoPain: defenderGroup.feelNoPain
+          ? parseInt(defenderGroup.feelNoPain!)
           : undefined,
-        wounds: parseInt(formValues.defenderProfile.wounds!),
-        modelsCount: parseInt(formValues.defenderProfile.modelsCount!),
-      },
+        wounds: parseInt(defenderGroup.wounds!),
+        modelsCount: parseInt(defenderGroup.modelsCount!),
+      })),
     };
     // just return undefined upon error, as validation should be handled by the form
   } catch {}

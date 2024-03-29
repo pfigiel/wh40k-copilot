@@ -1,17 +1,13 @@
-import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
+import { WeaponEntity } from "../entities/weapon-entity";
 import { WeaponModifierType } from "../types/weapon-modifier";
 
-export const resolveHit = (
-  rollResult: number,
-  weaponProfile: WeaponProfileEntity,
-) => {
+export const resolveHit = (rollResult: number, weapon: WeaponEntity) => {
   const hitModifier =
-    weaponProfile.getModifier(WeaponModifierType.HIT_MODIFIER)?.value ?? 0;
+    weapon.getModifier(WeaponModifierType.HIT_MODIFIER)?.value ?? 0;
   const criticalHitModifier =
-    weaponProfile.getModifier(WeaponModifierType.CRITICAL_HIT_MODIFIER)
-      ?.value ?? 0;
+    weapon.getModifier(WeaponModifierType.CRITICAL_HIT_MODIFIER)?.value ?? 0;
 
-  const isHit = rollResult + hitModifier >= weaponProfile.skill;
+  const isHit = rollResult + hitModifier >= weapon.skill;
   const isCriticalHit = rollResult + criticalHitModifier >= 6;
 
   return { isHit, isCriticalHit };

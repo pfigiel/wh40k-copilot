@@ -4,6 +4,7 @@ import { SimulationResults } from "@/types/simulation-results";
 import useSWR from "swr";
 
 export const useSimulationResult = (dto?: SimulationRequestDto) => {
+  console.log(dto);
   const { data, error, isLoading } = useSWR<SimulationResponseDto>(
     dto ? ["api/simulation", JSON.stringify(dto)] : null,
     ([path]) =>

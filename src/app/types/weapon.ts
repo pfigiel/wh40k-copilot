@@ -1,10 +1,9 @@
 import { AttacksProperty } from "./attacks-property";
 
-export interface WeaponProfile {
+export interface Weapon {
   attacks: AttacksProperty;
   skill: number;
   strength: number;
   armourPenetration: number;
   damage: number;
-  weaponsCount: number;
 }

@@ -1,4 +1,4 @@
-import { DefenderProfileEntity } from "../entities/defender-profile-entity";
+import { DefenderEntity } from "../entities/defender-entity";
 import { DamageReductionType } from "../types/damage-reduction-type";
 import { RoundStatistics } from "../types/round-statistics";
 import { range } from "./range";
@@ -6,11 +6,11 @@ import { roll } from "./roll";
 import { Dice } from "@/types/dice";
 
 export const allocateWounds = (
-  defenderProfiles: DefenderProfileEntity[],
+  defenders: DefenderEntity[],
   damage: number,
   statistics: RoundStatistics,
 ) => {
-  const woundedDefender = defenderProfiles[0];
+  const woundedDefender = defenders[0];
 
   const damageTaken = (() => {
     switch (woundedDefender.damageReduction) {
@@ -39,6 +39,6 @@ export const allocateWounds = (
   }
 
   if (woundedDefender.woundsRemaining <= 0) {
-    defenderProfiles.shift();
+    defenders.shift();
   }
 };

@@ -1,22 +1,19 @@
 import { config } from "./config";
-import { DefenderProfileEntity } from "./entities/defender-profile-entity";
-import { WeaponProfileEntity } from "./entities/weapon-profile-entity";
-import { runRound } from "./run-round";
+import { DefenderGroupEntity } from "./entities/defender-group-entity";
+import { WeaponGroupEntity } from "./entities/weapon-group-entity";
+import { runSimulationRound } from "./run-simulation-round";
 import { RoundStatistics } from "./types/round-statistics";
 import { range } from "./utils/range";
 
 export const runSimulation = (
-  weaponProfiles: WeaponProfileEntity[],
-  defenderProfile: DefenderProfileEntity,
+  weaponGroups: WeaponGroupEntity[],
+  defenderGroups: DefenderGroupEntity[],
 ) => {
   const statistics: RoundStatistics[] = [];
 
-  for (let i = 0; i < config.simulationRounds; i++) {
-    const defenderProfiles = range(defenderProfile.modelsCount).map(() => ({
-      ...defenderProfile,
-    }));
-    statistics.push(runRound(weaponProfiles, defenderProfiles));
-  }
+  range(config.simulationRounds).forEach(() => {
+    statistics.push(runSimulationRound(weaponGroups, defenderGroups));
+  });
 
   return statistics;
 };

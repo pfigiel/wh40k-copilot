@@ -7,22 +7,21 @@ import {
   WeaponAttributeType,
 } from "../types/weapon-attribute";
 import { WeaponModifier, WeaponModifierType } from "../types/weapon-modifier";
-import { WeaponProfile } from "@/types/weapon-profile";
+import { Weapon } from "@/app/types/weapon";
 
-export class WeaponProfileEntity implements Omit<WeaponProfile, "attacks"> {
+export class WeaponEntity implements Omit<Weapon, "attacks"> {
   public armourPenetration: number = 0;
   public attacks: AttacksAttribute = new FixedAttacksAttribute(1);
   public damage: number = 1;
   public skill: number = 6;
   public strength: number = 1;
-  public weaponsCount: number = 1;
   public hitRerollType?: RerollType;
   public woundRerollType?: RerollType;
   public attributes?: WeaponAttribute[];
   public modifiers?: WeaponModifier[];
   public rerollStrategies?: RerollStrategy[];
 
-  public constructor(initializer?: Partial<WeaponProfileEntity>) {
+  public constructor(initializer?: Partial<WeaponEntity>) {
     Object.assign(this, initializer);
   }
 

@@ -1,5 +1,5 @@
 export interface SimulationFormValues {
-  weaponProfiles: {
+  weaponGroups: {
     attacks?: string;
     skill?: string;
     strength?: string;
@@ -7,12 +7,12 @@ export interface SimulationFormValues {
     damage?: string;
     weaponsCount?: string;
   }[];
-  defenderProfile: {
+  defenderGroups: {
     toughness?: string;
     armourSave?: string;
     invulnerableSave?: string;
     feelNoPain?: string;
     wounds?: string;
     modelsCount?: string;
-  };
+  }[];
 }

@@ -1,5 +1,5 @@
-import { DefenderProfileEntity } from "../entities/defender-profile-entity";
-import { WeaponProfileEntity } from "../entities/weapon-profile-entity";
+import { DefenderGroupEntity } from "../entities/defender-group-entity";
+import { WeaponGroupEntity } from "../entities/weapon-group-entity";
 import { runSimulation } from "../run-simulation";
 import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
 import { RandomizedAttacksAttribute } from "../types/randomized-attacks-attribute";
@@ -11,7 +11,7 @@ import { range } from "../utils/range";
 import { Dice } from "@/types/dice";
 
 export const aggressorsVsVoidDragonRangedMelee = () => {
-  const fragstormGrenadeLaunchers = new WeaponProfileEntity({
+  const fragstormGrenadeLaunchers = new WeaponGroupEntity({
     armourPenetration: 1,
     skill: 3,
     damage: 1,
@@ -26,7 +26,7 @@ export const aggressorsVsVoidDragonRangedMelee = () => {
     hitRerollType: RerollType.ALL,
   });
 
-  const autoBoltstormGauntlets = new WeaponProfileEntity({
+  const autoBoltstormGauntlets = new WeaponGroupEntity({
     armourPenetration: 1,
     skill: 3,
     damage: 1,
@@ -42,7 +42,7 @@ export const aggressorsVsVoidDragonRangedMelee = () => {
     hitRerollType: RerollType.ALL,
   });
 
-  const twinPowerFists = new WeaponProfileEntity({
+  const twinPowerFists = new WeaponGroupEntity({
     armourPenetration: 2,
     skill: 3,
     damage: 1,
@@ -59,7 +59,7 @@ export const aggressorsVsVoidDragonRangedMelee = () => {
   const autoBoltstormGauntletsCount = 6;
   const twinPowerFistsCount = 6;
 
-  const weaponProfiles = [
+  const weaponGroups = [
     ...range(fragstormGrenadeLaunchersCount).map(
       () => fragstormGrenadeLaunchers,
     ),
@@ -67,14 +67,16 @@ export const aggressorsVsVoidDragonRangedMelee = () => {
     ...range(twinPowerFistsCount).map(() => twinPowerFists),
   ];
 
-  const defenderProfile = new DefenderProfileEntity({
-    armourSave: 4,
-    invulnerableSave: 4,
-    feelNoPain: 5,
-    toughness: 11,
-    wounds: 12,
-    modelsCount: 1,
-  });
+  const defenderGroups = [
+    new DefenderGroupEntity({
+      armourSave: 4,
+      invulnerableSave: 4,
+      feelNoPain: 5,
+      toughness: 11,
+      wounds: 12,
+      modelsCount: 1,
+    }),
+  ];
 
-  runSimulation(weaponProfiles, defenderProfile);
+  runSimulation(weaponGroups, defenderGroups);
 };
