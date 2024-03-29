@@ -4,4 +4,6 @@ export interface AggregatedStatistics {
   saves: number;
   fnps: number;
   woundsInflicted: number;
+  modelsDestroyed: number;
+  wipeChance: number;
 }

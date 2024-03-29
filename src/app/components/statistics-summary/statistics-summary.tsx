@@ -20,9 +20,11 @@ export const StatisticsSummary = ({ className, results }: Props) => {
           <div>Saves: {results.aggregates.saves}</div>
           <div>Passed FNPs: {results.aggregates.fnps}</div>
           <div>Wounds inflicted: {results.aggregates.woundsInflicted}</div>
+          <div>Models destroyed: {results.aggregates.modelsDestroyed}</div>
+          <div>Wipe chance: {results.aggregates.wipeChance * 100}%</div>
         </Section>
       ) : (
-        <>Statistics will be available after running the simulation</>
+        <>Statistics will become available after running the simulation.</>
       )}
     </Section>
   );

@@ -62,11 +62,11 @@ const Home = () => {
   return (
     <main className="flex gap-8 p-8">
       <form
-        className="flex basis-1/3 flex-col"
+        className="flex basis-2/5 flex-col"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-col gap-8 2xl:flex-row">
-          <Section className="min-w-80" title="Weapon groups">
+          <Section title="Weapon groups" className="flex-1">
             {weaponGroups.map((weaponGroup, index) => (
               <Section
                 key={weaponGroup.id}
@@ -119,7 +119,7 @@ const Home = () => {
             ))}
             <Button onClick={onAddWeaponGroupClick}>Add weapon group</Button>
           </Section>
-          <Section title="Defender groups">
+          <Section title="Defender groups" className="flex-1">
             {defenderGroups.map((defenderGroup, index) => (
               <Section
                 key={defenderGroup.id}
@@ -177,7 +177,7 @@ const Home = () => {
         </div>
         <Button.Submit className="mt-8" value="Run simulation" />
       </form>
-      <StatisticsSummary className="basis-2/3" results={simulationResults} />
+      <StatisticsSummary className="basis-3/5" results={simulationResults} />
     </main>
   );
 };

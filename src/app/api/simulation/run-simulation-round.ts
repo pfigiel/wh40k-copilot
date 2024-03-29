@@ -38,7 +38,7 @@ export const runSimulationRound = (
         : 0;
 
       range(weapon.attacks.resolve() + additionalBlastAttacks).forEach(() => {
-        if (remainingDefenders.length === 0) {
+        if (checkEndCondition(remainingDefenders, roundStatistics)) {
           return;
         }
 
@@ -70,7 +70,7 @@ export const runSimulationRound = (
         );
 
         range(sustainedHitsCount).forEach(() => {
-          if (remainingDefenders.length === 0) {
+          if (checkEndCondition(remainingDefenders, roundStatistics)) {
             return;
           }
 
@@ -88,7 +88,9 @@ export const runSimulationRound = (
   roundStatistics.modelsDestroyed =
     initialModelsCount - remainingDefenders.length;
 
-  roundStatistics.squadWiped = defenderGroups.length === 0;
+  roundStatistics.modelsDestroyed =
+    initialModelsCount - remainingDefenders.length;
+  roundStatistics.squadWiped = remainingDefenders.length === 0;
 
   return roundStatistics;
 };
@@ -124,4 +126,16 @@ const resolveWoundsAndSaves = (
   }
 
   allocateWounds(defenders, weapon.damage, roundStatistics);
+};
+
+const checkEndCondition = (
+  defenders: DefenderEntity[],
+  statistics: RoundStatistics,
+) => {
+  if (defenders.length) {
+    return false;
+  }
+
+  statistics.squadWiped = true;
+  return true;
 };

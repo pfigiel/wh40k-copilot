@@ -12,4 +12,10 @@ export const aggregateStatistics = (
   woundsInflicted: average(
     statistics.map((statistic) => statistic.woundsInflicted),
   ),
+  modelsDestroyed: average(
+    statistics.map((statistic) => statistic.modelsDestroyed),
+  ),
+  wipeChance:
+    statistics.reduce((prev, curr) => prev + (curr.squadWiped ? 1 : 0), 0) /
+    statistics.length,
 });

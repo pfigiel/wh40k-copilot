@@ -35,7 +35,7 @@ const Heading = ({ level = 1, children }: HeadingProps) => {
 export const Section = ({ children, className, level, title }: Props) => (
   <section
     className={classNames(
-      "relative border border-solid border-slate-300 p-6 pt-7",
+      "relative border border-solid border-slate-300 p-6 pt-8",
       {
         "p-4 pt-5": level == 2,
       },
