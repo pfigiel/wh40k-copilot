@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { ReactNode } from "react";
 
-type Level = 1 | 2;
+type Level = 1 | 2 | 3;
 
 interface HeadingProps {
   level?: Level;
@@ -28,6 +28,12 @@ const Heading = ({ level = 1, children }: HeadingProps) => {
         <h2 className={classNames(baseClassName, "-top-5 text-xl")}>
           {children}
         </h2>
+      );
+    case 3:
+      return (
+        <h3 className={classNames(baseClassName, "-top-5 text-lg")}>
+          {children}
+        </h3>
       );
   }
 };

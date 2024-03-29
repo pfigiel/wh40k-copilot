@@ -1,9 +1,12 @@
+import { NumericStatisticType } from "./numeric-statistic-type";
+
 export interface AggregatedStatistics {
-  hits: number;
-  wounds: number;
-  saves: number;
-  fnps: number;
-  woundsInflicted: number;
-  modelsDestroyed: number;
-  wipeChance: number;
+  average: {
+    [key in NumericStatisticType]: number;
+  } & {
+    wipeChance: number;
+  };
+  discrete: {
+    [key in NumericStatisticType]: { value: number; count: number }[];
+  };
 }

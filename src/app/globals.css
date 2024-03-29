@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 html {
-  color: rgb(203 213 225); /* slate-300 */
+  color: rgb(203, 213, 225); /* slate-300 */
   font-family: Arial, Helvetica, sans-serif;
 }
