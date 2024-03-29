@@ -23,7 +23,7 @@ export const Input = ({
     null,
   );
 
-  const isLabelFloating = value !== undefined || isInputFocused;
+  const isLabelFloating = ![undefined, ""].includes(value) || isInputFocused;
 
   const onLocalFocus = (event: FocusEvent<HTMLInputElement>) => {
     setInputFocused(true);
@@ -41,7 +41,7 @@ export const Input = ({
   };
 
   return (
-    <div data-testid={testId} className={"relative flex py-2"}>
+    <div data-testid={testId} className={"relative flex w-full py-2"}>
       {label && (
         <label
           data-testid={`${testId}__label`}
@@ -61,7 +61,7 @@ export const Input = ({
       <input
         {...props}
         data-testid={`${testId}__field`}
-        className="border-1 h-8 border border-slate-300 bg-slate-800 p-2"
+        className="border-1 h-8 w-full border border-slate-300 bg-slate-800 p-2"
         id={name}
         ref={localRefCallback}
         value={value ?? ""}

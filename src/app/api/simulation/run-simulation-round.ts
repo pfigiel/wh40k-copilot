@@ -29,8 +29,7 @@ export const runSimulationRound = (
 
   weaponGroups.forEach((weaponGroup) => {
     range(weaponGroup.weaponsCount).forEach(() => {
-      const { weaponsCount, ...rest } = weaponGroup;
-      const weapon = new WeaponEntity(rest);
+      const weapon = weaponGroup as WeaponEntity;
 
       const additionalBlastAttacks = weapon.hasAttribute(
         WeaponAttributeType.BLAST,

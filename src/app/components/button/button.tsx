@@ -17,7 +17,7 @@ const Button = ({
   return (
     <button
       data-testid={testId}
-      className="border border-slate-300 p-3"
+      className="my-4 w-full border border-slate-300 p-3"
       disabled={disabled}
       onClick={onClick}
     >

@@ -60,12 +60,20 @@ const Home = () => {
   };
 
   return (
-    <main className="p-8">
-      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex gap-8">
-          <Section className="w-1/2" title="Weapon groups">
+    <main className="flex gap-8 p-8">
+      <form
+        className="flex basis-1/3 flex-col"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="flex flex-col gap-8 2xl:flex-row">
+          <Section className="min-w-80" title="Weapon groups">
             {weaponGroups.map((weaponGroup, index) => (
-              <div key={weaponGroup.id}>
+              <Section
+                key={weaponGroup.id}
+                className="-mt-px w-full [&>div]:w-full"
+                title={`Group ${index + 1}`}
+                level={2}
+              >
                 <InputField
                   label="Attacks (A)"
                   control={control}
@@ -107,13 +115,18 @@ const Home = () => {
                     Remove weapon group
                   </Button>
                 )}
-              </div>
+              </Section>
             ))}
             <Button onClick={onAddWeaponGroupClick}>Add weapon group</Button>
           </Section>
-          <Section className="w-1/2" title="Defender groups">
+          <Section title="Defender groups">
             {defenderGroups.map((defenderGroup, index) => (
-              <div key={defenderGroup.id}>
+              <Section
+                key={defenderGroup.id}
+                className="-mt-px w-full [&>div]:w-full"
+                title={`Group ${index + 1}`}
+                level={2}
+              >
                 <InputField
                   label="Toughness (T)"
                   control={control}
@@ -155,16 +168,16 @@ const Home = () => {
                     Remove defender group
                   </Button>
                 )}
-              </div>
+              </Section>
             ))}
             <Button onClick={onAddDefenderGroupClick}>
               Add defender group
             </Button>
           </Section>
         </div>
-        <Button.Submit className="my-8" value="Run simulation" />
+        <Button.Submit className="mt-8" value="Run simulation" />
       </form>
-      <StatisticsSummary results={simulationResults} />
+      <StatisticsSummary className="basis-2/3" results={simulationResults} />
     </main>
   );
 };

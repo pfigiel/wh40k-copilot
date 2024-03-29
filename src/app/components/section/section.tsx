@@ -1,20 +1,48 @@
 import classNames from "classnames";
 import { ReactNode } from "react";
 
-interface Props {
+type Level = 1 | 2;
+
+interface HeadingProps {
+  level?: Level;
   children: ReactNode;
+}
+
+interface Props extends HeadingProps {
   className?: string;
   title: string;
 }
 
-export const Section = ({ children, className, title }: Props) => (
+const Heading = ({ level = 1, children }: HeadingProps) => {
+  const baseClassName = "absolute bg-slate-800 p-1";
+
+  switch (level) {
+    case 1:
+      return (
+        <h1 className={classNames(baseClassName, "-top-6 text-2xl")}>
+          {children}
+        </h1>
+      );
+    case 2:
+      return (
+        <h2 className={classNames(baseClassName, "-top-5 text-xl")}>
+          {children}
+        </h2>
+      );
+  }
+};
+
+export const Section = ({ children, className, level, title }: Props) => (
   <section
     className={classNames(
-      "relative border border-solid border-slate-300 p-6",
+      "relative border border-solid border-slate-300 p-6 pt-7",
+      {
+        "p-4 pt-5": level == 2,
+      },
       className,
     )}
   >
-    <h1 className="absolute -top-6 bg-slate-800 p-1 text-2xl">{title}</h1>
+    <Heading level={level}>{title}</Heading>
     {children}
   </section>
 );
