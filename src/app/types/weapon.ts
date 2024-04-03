@@ -1,9 +1,9 @@
-import { AttacksProperty } from "./attacks-property";
+import { FixedOrRandomizedProperty } from "./fixed-or-randomized-property";
 
 export interface Weapon {
-  attacks: AttacksProperty;
+  attacks: FixedOrRandomizedProperty;
   skill: number;
   strength: number;
   armourPenetration: number;
-  damage: number;
+  damage: FixedOrRandomizedProperty;
 }

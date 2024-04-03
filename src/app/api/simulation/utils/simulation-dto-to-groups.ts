@@ -1,8 +1,8 @@
 import { DefenderGroupEntity } from "../entities/defender-group-entity";
 import { WeaponGroupEntity } from "../entities/weapon-group-entity";
-import { AttacksAttribute } from "../types/attacks-attribute";
-import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
-import { RandomizedAttacksAttribute } from "../types/randomized-attacks-attribute";
+import { FixedAttribute } from "../types/fixed-attribute";
+import { FixedOrRandomizedAttribute } from "../types/fixed-or-randomized-attribute";
+import { RandomizedAttribute } from "../types/randomized-attribute";
 import { SimulationRequestDto } from "@/app/dtos/simulation-request-dto";
 
 export const simulationDtoToGroups = (
@@ -12,16 +12,20 @@ export const simulationDtoToGroups = (
   defenderGroups: DefenderGroupEntity[];
 } => {
   const weaponGroups = dto.weaponGroups.map((weaponGroup) => {
-    const { attacks, ...rest } = weaponGroup;
-    const attacksAttribute: AttacksAttribute = attacks.isFixed
-      ? new FixedAttacksAttribute(attacks.value)
-      : new RandomizedAttacksAttribute(
-          attacks.dice,
-          attacks.diceCount,
-          attacks.value,
-        );
+    const { attacks, damage, ...rest } = weaponGroup;
 
-    return new WeaponGroupEntity({ attacks: attacksAttribute, ...rest });
+    const attacksAttribute: FixedOrRandomizedAttribute = attacks.isFixed
+      ? new FixedAttribute(attacks.value)
+      : new RandomizedAttribute(attacks.dice, attacks.diceCount, attacks.value);
+    const damageAttribute: FixedOrRandomizedAttribute = damage.isFixed
+      ? new FixedAttribute(damage.value)
+      : new RandomizedAttribute(damage.dice, damage.diceCount, damage.value);
+
+    return new WeaponGroupEntity({
+      attacks: attacksAttribute,
+      damage: damageAttribute,
+      ...rest,
+    });
   });
 
   const defenderGroups = dto.defenderGroups.map(

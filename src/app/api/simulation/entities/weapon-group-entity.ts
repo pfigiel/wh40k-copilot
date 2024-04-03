@@ -3,7 +3,7 @@ import { WeaponGroup } from "@/types/weapon-group";
 
 export class WeaponGroupEntity
   extends WeaponEntity
-  implements Omit<WeaponGroup, "attacks">
+  implements Omit<WeaponGroup, "attacks" | "damage">
 {
   public weaponsCount: number = 1;
 

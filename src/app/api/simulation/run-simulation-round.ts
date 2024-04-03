@@ -125,7 +125,7 @@ const resolveWoundsAndSaves = (
     return;
   }
 
-  allocateWounds(defenders, weapon.damage, roundStatistics);
+  allocateWounds(defenders, weapon.damage.resolve(), roundStatistics);
 };
 
 const checkEndCondition = (

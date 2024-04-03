@@ -1,5 +1,37 @@
+import { FixedOrRandomizedProperty } from "../types/fixed-or-randomized-property";
 import { SimulationRequestDto } from "@/dtos/simulation-request-dto";
 import { SimulationFormValues } from "@/types/simulation-form-values";
+
+const positiveIntegerRegex = "[1-9][0-9]*";
+
+const parseFixedOrRandomizedProperty = (
+  rawInputValue: string,
+): FixedOrRandomizedProperty => {
+  const parsedNumericValue = parseInt(rawInputValue);
+
+  if (!Number.isNaN(parsedNumericValue)) {
+    return { isFixed: true, value: parsedNumericValue };
+  }
+
+  const randomizedValueRegex = new RegExp(
+    `(${positiveIntegerRegex})?d([36])(\\+(${positiveIntegerRegex})+)?`,
+  );
+
+  const [, rawDiceCount, rawDice, , rawValue] = randomizedValueRegex.exec(
+    rawInputValue,
+  ) as RegExpExecArray;
+
+  const diceCount = rawDiceCount ? parseInt(rawDice) : 1;
+  const dice = parseInt(rawDice);
+  const value = rawValue ? parseInt(rawValue) : 0;
+
+  return {
+    isFixed: false,
+    diceCount,
+    dice,
+    value,
+  };
+};
 
 export const simulationFormValuesToDto = (
   formValues: SimulationFormValues,
@@ -7,12 +39,11 @@ export const simulationFormValuesToDto = (
   try {
     return {
       weaponGroups: formValues.weaponGroups.map((weaponGroup) => ({
-        // TODO: handle randomized attacks
-        attacks: { isFixed: true, value: parseInt(weaponGroup.attacks!) },
+        attacks: parseFixedOrRandomizedProperty(weaponGroup.attacks!),
         skill: parseInt(weaponGroup.skill!),
         strength: parseInt(weaponGroup.strength!),
         armourPenetration: parseInt(weaponGroup.armourPenetration!),
-        damage: parseInt(weaponGroup.damage!),
+        damage: parseFixedOrRandomizedProperty(weaponGroup.damage!),
         weaponsCount: parseInt(weaponGroup.weaponsCount!),
       })),
       defenderGroups: formValues.defenderGroups.map((defenderGroup) => ({
@@ -30,5 +61,5 @@ export const simulationFormValuesToDto = (
       })),
     };
     // just return undefined upon error, as validation should be handled by the form
-  } catch {}
+  } catch (error) {}
 };

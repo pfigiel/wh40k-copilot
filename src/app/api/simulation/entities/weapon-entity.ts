@@ -1,5 +1,5 @@
-import { AttacksAttribute } from "../types/attacks-attribute";
-import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
+import { FixedAttribute } from "../types/fixed-attribute";
+import { FixedOrRandomizedAttribute } from "../types/fixed-or-randomized-attribute";
 import { RerollStrategy } from "../types/reroll-strategy";
 import { RerollType } from "../types/reroll-type";
 import {
@@ -9,10 +9,10 @@ import {
 import { WeaponModifier, WeaponModifierType } from "../types/weapon-modifier";
 import { Weapon } from "@/app/types/weapon";
 
-export class WeaponEntity implements Omit<Weapon, "attacks"> {
+export class WeaponEntity implements Omit<Weapon, "attacks" | "damage"> {
   public armourPenetration: number = 0;
-  public attacks: AttacksAttribute = new FixedAttacksAttribute(1);
-  public damage: number = 1;
+  public attacks: FixedOrRandomizedAttribute = new FixedAttribute(1);
+  public damage: FixedOrRandomizedAttribute = new FixedAttribute(1);
   public skill: number = 6;
   public strength: number = 1;
   public hitRerollType?: RerollType;

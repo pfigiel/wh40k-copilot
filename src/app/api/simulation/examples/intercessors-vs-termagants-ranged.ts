@@ -1,8 +1,8 @@
 import { DefenderGroupEntity } from "../entities/defender-group-entity";
 import { WeaponGroupEntity } from "../entities/weapon-group-entity";
 import { runSimulation } from "../run-simulation";
-import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
-import { RandomizedAttacksAttribute } from "../types/randomized-attacks-attribute";
+import { FixedAttribute } from "../types/fixed-attribute";
+import { RandomizedAttribute } from "../types/randomized-attribute";
 import { RerollType } from "../types/reroll-type";
 import { WeaponAttributeType } from "../types/weapon-attribute";
 import { range } from "../utils/range";
@@ -12,18 +12,18 @@ export const intercessorsVsTermagantsRanged = () => {
   const boltRifle = new WeaponGroupEntity({
     armourPenetration: 1,
     skill: 3,
-    damage: 1,
+    damage: new FixedAttribute(1),
     strength: 4,
-    attacks: new FixedAttacksAttribute(2),
+    attacks: new FixedAttribute(2),
     hitRerollType: RerollType.ALL,
   });
 
   const grenadeLauncher = new WeaponGroupEntity({
     armourPenetration: 0,
     skill: 3,
-    damage: 1,
+    damage: new FixedAttribute(1),
     strength: 4,
-    attacks: new RandomizedAttacksAttribute(Dice.D3),
+    attacks: new RandomizedAttribute(Dice.D3),
     attributes: [{ type: WeaponAttributeType.BLAST }],
     hitRerollType: RerollType.ALL,
   });

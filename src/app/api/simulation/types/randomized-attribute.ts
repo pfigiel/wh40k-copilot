@@ -1,8 +1,8 @@
 import { roll } from "../utils/roll";
-import { AttacksAttribute } from "./attacks-attribute";
+import { FixedOrRandomizedAttribute } from "./fixed-or-randomized-attribute";
 import { Dice } from "@/types/dice";
 
-export class RandomizedAttacksAttribute implements AttacksAttribute {
+export class RandomizedAttribute implements FixedOrRandomizedAttribute {
   private dice: Dice;
   private diceCount: number;
   private modifier: number;

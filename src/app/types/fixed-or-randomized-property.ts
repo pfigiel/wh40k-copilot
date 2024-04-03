@@ -1,6 +1,6 @@
 import { Dice } from "./dice";
 
-export type AttacksProperty = {
+export type FixedOrRandomizedProperty = {
   value: number;
 } & (
   | {

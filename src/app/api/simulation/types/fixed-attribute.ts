@@ -1,6 +1,6 @@
-import { AttacksAttribute } from "./attacks-attribute";
+import { FixedOrRandomizedAttribute } from "./fixed-or-randomized-attribute";
 
-export class FixedAttacksAttribute implements AttacksAttribute {
+export class FixedAttribute implements FixedOrRandomizedAttribute {
   private attacks: number;
 
   public constructor(attacks: number) {

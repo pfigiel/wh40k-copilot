@@ -1,8 +1,8 @@
 import { DefenderGroupEntity } from "../entities/defender-group-entity";
 import { WeaponGroupEntity } from "../entities/weapon-group-entity";
 import { runSimulation } from "../run-simulation";
-import { FixedAttacksAttribute } from "../types/fixed-attacks-attribute";
-import { RandomizedAttacksAttribute } from "../types/randomized-attacks-attribute";
+import { FixedAttribute } from "../types/fixed-attribute";
+import { RandomizedAttribute } from "../types/randomized-attribute";
 import { RerollStrategy } from "../types/reroll-strategy";
 import { RerollType } from "../types/reroll-type";
 import { WeaponAttributeType } from "../types/weapon-attribute";
@@ -14,9 +14,9 @@ export const aggressorsVsVoidDragonRangedMelee = () => {
   const fragstormGrenadeLaunchers = new WeaponGroupEntity({
     armourPenetration: 1,
     skill: 3,
-    damage: 1,
+    damage: new FixedAttribute(1),
     strength: 4,
-    attacks: new RandomizedAttacksAttribute(Dice.D6),
+    attacks: new RandomizedAttribute(Dice.D6),
     attributes: [
       { type: WeaponAttributeType.SUSTAINED_HITS, value: 1 },
       { type: WeaponAttributeType.LETHAL_HITS },
@@ -29,9 +29,9 @@ export const aggressorsVsVoidDragonRangedMelee = () => {
   const autoBoltstormGauntlets = new WeaponGroupEntity({
     armourPenetration: 1,
     skill: 3,
-    damage: 1,
+    damage: new FixedAttribute(1),
     strength: 4,
-    attacks: new FixedAttacksAttribute(3),
+    attacks: new FixedAttribute(3),
     attributes: [
       { type: WeaponAttributeType.TWIN_LINKED },
       { type: WeaponAttributeType.SUSTAINED_HITS, value: 1 },
@@ -45,9 +45,9 @@ export const aggressorsVsVoidDragonRangedMelee = () => {
   const twinPowerFists = new WeaponGroupEntity({
     armourPenetration: 2,
     skill: 3,
-    damage: 1,
+    damage: new FixedAttribute(1),
     strength: 8,
-    attacks: new FixedAttacksAttribute(3),
+    attacks: new FixedAttribute(3),
     attributes: [
       { type: WeaponAttributeType.TWIN_LINKED },
       { type: WeaponAttributeType.LETHAL_HITS },
