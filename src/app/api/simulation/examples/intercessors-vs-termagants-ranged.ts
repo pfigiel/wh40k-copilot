@@ -4,9 +4,9 @@ import { runSimulation } from "../run-simulation";
 import { FixedAttribute } from "../types/fixed-attribute";
 import { RandomizedAttribute } from "../types/randomized-attribute";
 import { RerollType } from "../types/reroll-type";
-import { WeaponAttributeType } from "../types/weapon-attribute";
 import { range } from "../utils/range";
 import { Dice } from "@/types/dice";
+import { WeaponAttributeType } from "@/types/weapon-attribute";
 
 export const intercessorsVsTermagantsRanged = () => {
   const boltRifle = new WeaponGroupEntity({

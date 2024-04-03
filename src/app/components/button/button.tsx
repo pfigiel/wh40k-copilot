@@ -1,4 +1,4 @@
-import { SubmitButton } from "@/components/submit-button";
+import { SubmitButton } from "./submit-button";
 import { MouseEventHandler, ReactNode } from "react";
 
 export interface Props {

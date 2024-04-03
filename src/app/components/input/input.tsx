@@ -1,7 +1,10 @@
+import { InputField } from "./input-field";
+import { InputProps } from "./input-props";
+import { FieldMessage } from "@/components/field-message";
 import classNames from "classnames";
 import { FocusEvent, useState } from "react";
 
-export const Input = ({
+const Input = ({
   "data-testid": testId = "input",
   name,
   label,
@@ -17,13 +20,14 @@ export const Input = ({
   onFocus,
   onBlur,
   ...props
-}: any) => {
+}: InputProps) => {
   const [isInputFocused, setInputFocused] = useState(false);
   const [inputInstance, setInputInstance] = useState<HTMLInputElement | null>(
     null,
   );
 
-  const isLabelFloating = ![undefined, ""].includes(value) || isInputFocused;
+  const isLabelFloating =
+    !([undefined, ""] as (typeof value)[]).includes(value) || isInputFocused;
 
   const onLocalFocus = (event: FocusEvent<HTMLInputElement>) => {
     setInputFocused(true);
@@ -69,6 +73,21 @@ export const Input = ({
         onFocus={onLocalFocus}
         onBlur={onLocalBlur}
       />
+      {withMessages && (
+        <>
+          <FieldMessage
+            data-testid={`${testId}__field-message`}
+            invalid={invalid}
+            valid={valid}
+            error={error}
+            validMessage={validMessage}
+          />
+        </>
+      )}
     </div>
   );
 };
+
+Input.Field = InputField;
+
+export { Input };

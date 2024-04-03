@@ -3,7 +3,6 @@ import { DefenderGroupEntity } from "./entities/defender-group-entity";
 import { WeaponEntity } from "./entities/weapon-entity";
 import { WeaponGroupEntity } from "./entities/weapon-group-entity";
 import { RoundStatistics } from "./types/round-statistics";
-import { WeaponAttributeType } from "./types/weapon-attribute";
 import { allocateWounds } from "./utils/allocate-wounds";
 import { performHitRolls } from "./utils/perform-hit-rolls";
 import { performWoundRolls } from "./utils/perform-wound-rolls";
@@ -11,6 +10,7 @@ import { range } from "./utils/range";
 import { resolveSave } from "./utils/resolveSave";
 import { roll } from "./utils/roll";
 import { Dice } from "@/types/dice";
+import { WeaponAttributeType } from "@/types/weapon-attribute";
 
 export const runSimulationRound = (
   weaponGroups: WeaponGroupEntity[],

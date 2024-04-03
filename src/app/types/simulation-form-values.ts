@@ -1,3 +1,5 @@
+import { WeaponAttribute } from "./weapon-attribute";
+
 export interface SimulationFormValues {
   weaponGroups: {
     attacks?: string;
@@ -6,6 +8,7 @@ export interface SimulationFormValues {
     armourPenetration?: string;
     damage?: string;
     weaponsCount?: string;
+    attributes?: Partial<WeaponAttribute>[];
   }[];
   defenderGroups: {
     toughness?: string;

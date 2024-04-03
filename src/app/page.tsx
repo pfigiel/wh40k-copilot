@@ -1,5 +1,6 @@
 "use client";
 
+import { WeaponAttributesFieldArray } from "./components/weapon-attributes-field-array";
 import { SimulationRequestDto } from "./dtos/simulation-request-dto";
 import { SimulationFormValues } from "./types/simulation-form-values";
 import { simulationFormValuesToDto } from "./utils/simulation-form-values-to-dto";
@@ -125,6 +126,10 @@ const Home = () => {
                   control={control}
                   required
                   name={`weaponGroups.${index}.weaponsCount`}
+                />
+                <WeaponAttributesFieldArray
+                  control={control}
+                  parentIndex={index}
                 />
                 {index > 0 && (
                   <Button onClick={() => onRemoveWeaponGroupClick(index)}>
