@@ -48,7 +48,7 @@ export const Section = ({
 }: Props) => (
   <section
     className={classNames(
-      "relative border border-solid border-slate-300 p-6 pt-8",
+      "relative border border-solid border-slate-600 p-6 pt-8",
       {
         "p-4 pt-5": level == 2,
       },

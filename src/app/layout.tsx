@@ -1,3 +1,4 @@
+import { Nav } from "./components/nav";
 import "./globals.css";
 import "./reset.css";
 import type { Metadata } from "next";
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-slate-800">
-      <body>{children}</body>
+      <body>
+        <Nav />
+        {children}
+      </body>
     </html>
   );
 }

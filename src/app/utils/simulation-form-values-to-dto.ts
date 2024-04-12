@@ -7,7 +7,7 @@ const positiveIntegerRegex = "[1-9][0-9]*";
 const parseFixedOrRandomizedProperty = (
   rawInputValue: string,
 ): FixedOrRandomizedProperty => {
-  const parsedNumericValue = parseInt(rawInputValue);
+  const parsedNumericValue = +rawInputValue;
 
   if (!Number.isNaN(parsedNumericValue)) {
     return { isFixed: true, value: parsedNumericValue };
