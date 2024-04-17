@@ -1,6 +1,6 @@
 import { DropdownProps } from "./dropdown-props";
 import classNames from "classnames";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import ClickAwayListener from "react-click-away-listener";
 import { useResizeObserverRef } from "rooks";
 
