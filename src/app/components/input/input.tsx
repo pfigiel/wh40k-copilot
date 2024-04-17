@@ -6,6 +6,7 @@ import { FocusEvent, useState } from "react";
 
 const Input = ({
   "data-testid": testId = "input",
+  className,
   name,
   label,
   value,
@@ -45,7 +46,10 @@ const Input = ({
   };
 
   return (
-    <div data-testid={testId} className={"relative flex w-full py-2"}>
+    <div
+      data-testid={testId}
+      className={classNames("relative flex w-full py-2", className)}
+    >
       {label && (
         <label
           data-testid={`${testId}__label`}

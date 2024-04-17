@@ -1,13 +1,13 @@
 import { DropdownOption } from "./dropdown-option";
 import { FormControlProps } from "@/types/form-control-props";
 import { ValidationProps } from "@/types/validation-props";
-import { SelectHTMLAttributes } from "react";
 
-export interface DropdownProps
-  extends SelectHTMLAttributes<HTMLSelectElement>,
-    FormControlProps,
+export interface DropdownProps<TValue>
+  extends FormControlProps,
     ValidationProps {
   ["data-testid"]?: string;
-  options: DropdownOption[];
-  refCallback?: (instance: HTMLSelectElement | null) => void;
+  className?: string;
+  options: DropdownOption<TValue>[];
+  value: TValue;
+  onSelect: (value: TValue) => void;
 }

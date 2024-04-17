@@ -7,5 +7,6 @@ export interface InputProps
     FormControlProps,
     ValidationProps {
   ["data-testid"]?: string;
+  className?: string;
   refCallback?: (instance: HTMLInputElement | null) => void;
 }

@@ -1,6 +1,4 @@
-import { ReactNode } from "react";
-
-export interface DropdownOption {
-  value: string | readonly string[] | number | undefined;
-  display: ReactNode;
+export interface DropdownOption<TValue> {
+  value: TValue;
+  display: string;
 }

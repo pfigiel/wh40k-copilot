@@ -1,5 +1,6 @@
 "use client";
 
+import { WeaponAttributesFieldArray } from "./components/weapon-attributes-field-array";
 import { SimulationRequestDto } from "./dtos/simulation-request-dto";
 import { SimulationFormValues } from "./types/simulation-form-values";
 import { simulationFormValuesToDto } from "./utils/simulation-form-values-to-dto";
@@ -126,11 +127,10 @@ const Home = () => {
                   required
                   name={`weaponGroups.${index}.weaponsCount`}
                 />
-                {/* TODO: Restore once a proper dropdown component is implemented */}
-                {/* <WeaponAttributesFieldArray
+                <WeaponAttributesFieldArray
                   control={control}
                   parentIndex={index}
-                /> */}
+                />
                 {index > 0 && (
                   <Button onClick={() => onRemoveWeaponGroupClick(index)}>
                     Remove weapon group

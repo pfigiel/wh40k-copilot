@@ -1,6 +1,8 @@
 import { SimulationFormValues } from "@/app/types/simulation-form-values";
 import { Button, DropdownField, InputField } from "@/components";
-import { Fragment } from "react";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MouseEvent } from "react";
 import { Control, useFieldArray } from "react-hook-form";
 
 interface Props {
@@ -14,7 +16,8 @@ export const WeaponAttributesFieldArray = ({ control, parentIndex }: Props) => {
     name: `weaponGroups.${parentIndex}.attributes`,
   });
 
-  const onAddWeaponAttributeClick = () => {
+  const onAddWeaponAttributeClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault(); // prevent form from being submitted due to click
     append({});
   };
 
@@ -25,9 +28,11 @@ export const WeaponAttributesFieldArray = ({ control, parentIndex }: Props) => {
   return (
     <>
       {fields.map((field, index) => (
-        <Fragment key={field.id}>
+        <div key={field.id} className="flex gap-2">
           <DropdownField
+            className="w-16 flex-auto"
             control={control}
+            label="Attribute name"
             name={`weaponGroups.${parentIndex}.attributes.${index}.type`}
             options={[
               { value: "BLAST", display: "Blast" },
@@ -41,13 +46,15 @@ export const WeaponAttributesFieldArray = ({ control, parentIndex }: Props) => {
             ]}
           />
           <InputField
+            className="w-4 flex-auto"
             control={control}
             name={`weaponGroups.${parentIndex}.attributes.${index}.value`}
+            label="Value"
           />
-          <Button onClick={() => onRemoveWeaponAttributeClick(index)}>
-            Remove Weapon Attribute
-          </Button>
-        </Fragment>
+          <button onClick={() => onRemoveWeaponAttributeClick(index)}>
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+        </div>
       ))}
       <Button onClick={onAddWeaponAttributeClick}>Add Weapon Attribute</Button>
     </>
