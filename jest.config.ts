@@ -10,6 +10,7 @@ const config = {
     "^@/hooks/(.*)$": "<rootDir>/src/app/hooks/$1",
     "^@/test/(.*)$": "<rootDir>/src/app/test/$1",
     "^@/types/(.*)$": "<rootDir>/src/app/types/$1",
+    "^@/utils/(.*)$": "<rootDir>/src/app/utils/$1",
   },
   modulePaths: ["<rootDir>", "<rootDir>/src"],
   roots: ["<rootDir>", "<rootDir>/src"],

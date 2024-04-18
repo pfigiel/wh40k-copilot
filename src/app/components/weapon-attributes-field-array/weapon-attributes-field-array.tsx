@@ -1,8 +1,11 @@
-import { SimulationFormValues } from "@/app/types/simulation-form-values";
+import { ssCaseToSpacedPascalCase } from "@/app/utils/ss-case-to-spaced-pascal-case";
 import { Button, DropdownField, InputField } from "@/components";
+import { SimulationFormValues } from "@/types/simulation-form-values";
+import { WeaponAttributeType } from "@/types/weapon-attribute";
+import { range } from "@/utils/range";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MouseEvent } from "react";
+import { MouseEvent, useMemo } from "react";
 import { Control, useFieldArray } from "react-hook-form";
 
 interface Props {
@@ -15,6 +18,18 @@ export const WeaponAttributesFieldArray = ({ control, parentIndex }: Props) => {
     control,
     name: `weaponGroups.${parentIndex}.attributes`,
   });
+
+  const attributeOptions = useMemo(() => {
+    const attributeValuesAndKeys = Object.keys(WeaponAttributeType);
+    const attributesCount = attributeValuesAndKeys.length / 2;
+    const attributeValues = attributeValuesAndKeys.slice(0, attributesCount);
+    const attributeKeys = attributeValuesAndKeys.slice(attributesCount);
+
+    return range(attributesCount).map((_, index) => ({
+      value: parseInt(attributeValues[index]),
+      display: ssCaseToSpacedPascalCase(attributeKeys[index]),
+    }));
+  }, []);
 
   const onAddWeaponAttributeClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault(); // prevent form from being submitted due to click
@@ -34,16 +49,7 @@ export const WeaponAttributesFieldArray = ({ control, parentIndex }: Props) => {
             control={control}
             label="Attribute name"
             name={`weaponGroups.${parentIndex}.attributes.${index}.type`}
-            options={[
-              { value: "BLAST", display: "Blast" },
-              {
-                value: "DEVASTATING_WOUNDS",
-                display: "Devastating Wounds",
-              },
-              { value: "LETHAL_HITS", display: "Lethal Hits" },
-              { value: "SUSTAINED_HITS", display: "Sustained Hits" },
-              { value: "TWIN_LINKED", display: "Twin Linked" },
-            ]}
+            options={attributeOptions}
           />
           <InputField
             className="w-4 flex-auto"

@@ -27,7 +27,8 @@
       "@/dtos/*": ["./src/app/dtos/*"],
       "@/hooks/*": ["./src/app/hooks/*"],
       "@/test/*": ["./src/app/test/*"],
-      "@/types/*": ["./src/app/types/*"]
+      "@/types/*": ["./src/app/types/*"],
+      "@/utils/*": ["./src/app/utils/*"]
     },
     "types": ["@testing-library/jest-dom"]
   },

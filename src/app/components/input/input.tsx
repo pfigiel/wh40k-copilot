@@ -48,7 +48,7 @@ const Input = ({
   return (
     <div
       data-testid={testId}
-      className={classNames("relative flex w-full py-2", className)}
+      className={classNames("relative flex py-2", className)}
     >
       {label && (
         <label

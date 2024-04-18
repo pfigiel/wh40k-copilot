@@ -1,4 +1,5 @@
 import { FixedOrRandomizedProperty } from "./fixed-or-randomized-property";
+import { WeaponAttribute } from "./weapon-attribute";
 
 export interface Weapon {
   attacks: FixedOrRandomizedProperty;
@@ -6,4 +7,5 @@ export interface Weapon {
   strength: number;
   armourPenetration: number;
   damage: FixedOrRandomizedProperty;
+  attributes?: WeaponAttribute[];
 }

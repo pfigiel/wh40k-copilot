@@ -6,11 +6,11 @@ import { RoundStatistics } from "./types/round-statistics";
 import { allocateWounds } from "./utils/allocate-wounds";
 import { performHitRolls } from "./utils/perform-hit-rolls";
 import { performWoundRolls } from "./utils/perform-wound-rolls";
-import { range } from "./utils/range";
 import { resolveSave } from "./utils/resolveSave";
 import { roll } from "./utils/roll";
 import { Dice } from "@/types/dice";
 import { WeaponAttributeType } from "@/types/weapon-attribute";
+import { range } from "@/utils/range";
 
 export const runSimulationRound = (
   weaponGroups: WeaponGroupEntity[],

@@ -6,9 +6,9 @@ import { RandomizedAttribute } from "../types/randomized-attribute";
 import { RerollStrategy } from "../types/reroll-strategy";
 import { RerollType } from "../types/reroll-type";
 import { WeaponModifierType } from "../types/weapon-modifier";
-import { range } from "../utils/range";
 import { Dice } from "@/types/dice";
 import { WeaponAttributeType } from "@/types/weapon-attribute";
+import { range } from "@/utils/range";
 
 export const aggressorsVsVoidDragonRangedMelee = () => {
   const fragstormGrenadeLaunchers = new WeaponGroupEntity({

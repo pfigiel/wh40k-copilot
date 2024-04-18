@@ -45,6 +45,10 @@ export const simulationFormValuesToDto = (
         armourPenetration: parseInt(weaponGroup.armourPenetration!),
         damage: parseFixedOrRandomizedProperty(weaponGroup.damage!),
         weaponsCount: parseInt(weaponGroup.weaponsCount!),
+        attributes: weaponGroup.attributes?.map((attribute) => ({
+          type: attribute.type!,
+          value: attribute.value ? parseInt(attribute.value) : undefined,
+        })),
       })),
       defenderGroups: formValues.defenderGroups.map((defenderGroup) => ({
         toughness: parseInt(defenderGroup.toughness!),
