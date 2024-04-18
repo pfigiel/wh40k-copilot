@@ -1,9 +1,8 @@
-import { DefenderEntity } from "../entities/defender-entity";
-import { DamageReductionType } from "../types/damage-reduction-type";
-import { RoundStatistics } from "../types/round-statistics";
 import { roll } from "./roll";
-import { Dice } from "@/types/dice";
-import { range } from "@/utils/range";
+import { DefenderEntity } from "@/api/simulation/entities";
+import { RoundStatistics } from "@/api/simulation/types";
+import { DamageReductionType, Dice } from "@/types";
+import { range } from "@/utils";
 
 export const allocateWounds = (
   defenders: DefenderEntity[],

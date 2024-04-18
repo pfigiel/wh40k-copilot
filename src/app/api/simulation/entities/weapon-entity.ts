@@ -1,10 +1,16 @@
-import { FixedAttribute } from "../types/fixed-attribute";
-import { FixedOrRandomizedAttribute } from "../types/fixed-or-randomized-attribute";
-import { RerollStrategy } from "../types/reroll-strategy";
-import { RerollType } from "../types/reroll-type";
-import { WeaponModifier, WeaponModifierType } from "../types/weapon-modifier";
-import { Weapon } from "@/app/types/weapon";
-import { WeaponAttribute, WeaponAttributeType } from "@/types/weapon-attribute";
+import {
+  FixedAttribute,
+  FixedOrRandomizedAttribute,
+} from "@/api/simulation/types";
+import {
+  RerollStrategy,
+  RerollType,
+  Weapon,
+  WeaponAttribute,
+  WeaponAttributeType,
+  WeaponModifier,
+  WeaponModifierType,
+} from "@/types";
 
 export class WeaponEntity implements Omit<Weapon, "attacks" | "damage"> {
   public armourPenetration: number = 0;

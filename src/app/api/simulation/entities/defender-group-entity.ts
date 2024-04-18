@@ -1,5 +1,5 @@
 import { DefenderEntity } from "./defender-entity";
-import { DefenderGroup } from "@/app/types/defender-group";
+import { DefenderGroup } from "@/types";
 
 export class DefenderGroupEntity
   extends DefenderEntity

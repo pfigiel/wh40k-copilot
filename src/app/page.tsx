@@ -1,11 +1,14 @@
 "use client";
 
-import { WeaponAttributesFieldArray } from "./components/weapon-attributes-field-array";
-import { SimulationRequestDto } from "./dtos/simulation-request-dto";
-import { SimulationFormValues } from "./types/simulation-form-values";
-import { simulationFormValuesToDto } from "./utils/simulation-form-values-to-dto";
-import { Button, InputField, Section, StatisticsSummary } from "@/components";
-import { useSimulationResult as useSimulationResults } from "@/hooks/useSimulationResult";
+import {
+  StatisticsSummary,
+  WeaponAttributesFieldArray,
+} from "./battle-calculator/components";
+import { SimulationFormValues } from "./battle-calculator/types";
+import { simulationFormValuesToDto } from "./battle-calculator/utils";
+import { useSimulationResult as useSimulationResults } from "@/app/battle-calculator/hooks/useSimulationResult";
+import { Button, InputField, Section } from "@/components";
+import { SimulationRequestDto } from "@/dtos";
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 

@@ -1,5 +1,5 @@
 import { WeaponEntity } from "./weapon-entity";
-import { WeaponGroup } from "@/types/weapon-group";
+import { WeaponGroup } from "@/types";
 
 export class WeaponGroupEntity
   extends WeaponEntity

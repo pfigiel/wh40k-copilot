@@ -1,6 +1,6 @@
-import { roll } from "../utils/roll";
 import { FixedOrRandomizedAttribute } from "./fixed-or-randomized-attribute";
-import { Dice } from "@/types/dice";
+import { roll } from "@/api/simulation/utils";
+import { Dice } from "@/types";
 
 export class RandomizedAttribute implements FixedOrRandomizedAttribute {
   private dice: Dice;

@@ -1,5 +1,5 @@
-import { Nav } from "./components/nav";
 import "./globals.css";
+import { Nav } from "./layout/components/nav";
 import "./reset.css";
 import type { Metadata } from "next";
 

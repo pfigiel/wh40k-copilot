@@ -1,4 +1,4 @@
-import { RoundStatistics } from "../types/round-statistics";
+import { RoundStatistics } from "@/api/simulation/types";
 
 export const discretize = (
   statistics: RoundStatistics[],

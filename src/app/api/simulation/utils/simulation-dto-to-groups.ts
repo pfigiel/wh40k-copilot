@@ -1,9 +1,13 @@
-import { DefenderGroupEntity } from "../entities/defender-group-entity";
-import { WeaponGroupEntity } from "../entities/weapon-group-entity";
-import { FixedAttribute } from "../types/fixed-attribute";
-import { FixedOrRandomizedAttribute } from "../types/fixed-or-randomized-attribute";
-import { RandomizedAttribute } from "../types/randomized-attribute";
-import { SimulationRequestDto } from "@/app/dtos/simulation-request-dto";
+import {
+  DefenderGroupEntity,
+  WeaponGroupEntity,
+} from "@/api/simulation/entities";
+import {
+  FixedAttribute,
+  FixedOrRandomizedAttribute,
+  RandomizedAttribute,
+} from "@/api/simulation/types";
+import { SimulationRequestDto } from "@/dtos";
 
 export const simulationDtoToGroups = (
   dto: SimulationRequestDto,

@@ -1,5 +1,4 @@
-import { DamageReductionType } from "../types/damage-reduction-type";
-import { Defender } from "@/types/defender";
+import { DamageReductionType, Defender } from "@/types";
 
 export class DefenderEntity implements Defender {
   public armourSave: number = 6;

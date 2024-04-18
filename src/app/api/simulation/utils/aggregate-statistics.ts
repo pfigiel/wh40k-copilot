@@ -1,7 +1,7 @@
-import { RoundStatistics } from "../types/round-statistics";
 import { average } from "./average";
 import { discretize } from "./discretize";
-import { AggregatedStatistics } from "@/types/aggregated-statistics";
+import { RoundStatistics } from "@/api/simulation/types";
+import { AggregatedStatistics } from "@/types";
 
 export const aggregateStatistics = (
   statistics: RoundStatistics[],

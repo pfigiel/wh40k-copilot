@@ -1,5 +1,5 @@
-import { WeaponEntity } from "../entities/weapon-entity";
-import { WeaponModifierType } from "../types/weapon-modifier";
+import { WeaponEntity } from "@/api/simulation/entities";
+import { WeaponModifierType } from "@/types";
 
 export const resolveHit = (rollResult: number, weapon: WeaponEntity) => {
   const hitModifier =

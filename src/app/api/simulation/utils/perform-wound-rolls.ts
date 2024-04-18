@@ -1,11 +1,7 @@
-import { DefenderEntity } from "../entities/defender-entity";
-import { WeaponEntity } from "../entities/weapon-entity";
-import { RerollStrategy } from "../types/reroll-strategy";
-import { RerollType } from "../types/reroll-type";
 import { resolveWound } from "./resolve-wound";
 import { roll } from "./roll";
-import { Dice } from "@/types/dice";
-import { WeaponAttributeType } from "@/types/weapon-attribute";
+import { DefenderEntity, WeaponEntity } from "@/api/simulation/entities";
+import { Dice, RerollStrategy, RerollType, WeaponAttributeType } from "@/types";
 
 export const performWoundRolls = (
   weapon: WeaponEntity,
