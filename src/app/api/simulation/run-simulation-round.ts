@@ -60,6 +60,7 @@ export const runSimulationRound = (
           ? sustainedHitsAttribute?.value ?? 0
           : 0;
 
+        roundStatistics.hits += sustainedHitsCount; // TODO: rethink whether these should be included in 'hits'
         roundStatistics.sustainedHits += sustainedHitsCount;
 
         resolveWoundsAndSaves(

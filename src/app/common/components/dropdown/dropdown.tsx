@@ -1,65 +1,23 @@
 import { DropdownProps } from "./dropdown-props";
+import { Option } from "./option";
+import { Toggle } from "./toggle";
 import classNames from "classnames";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ClickAwayListener from "react-click-away-listener";
 import { useResizeObserverRef } from "rooks";
-
-interface ToggleProps {
-  label: string;
-  isLabelFloating: boolean;
-  display?: string;
-  onClick: () => void;
-}
-
-interface OptionProps<TValue> {
-  display: string;
-  value: TValue;
-  onSelect: (value: TValue) => void;
-}
-
-const Toggle = ({ display, label, isLabelFloating, onClick }: ToggleProps) => {
-  return (
-    <div className="relative cursor-pointer" onClick={onClick}>
-      <label
-        className={classNames(
-          "absolute left-2 bg-slate-800 transition-all",
-          { "-top-2.5 text-sm text-slate-300": isLabelFloating },
-          { "top-2 cursor-pointer text-slate-500": !isLabelFloating },
-        )}
-      >
-        {label}
-      </label>
-      <div className="h-8 border border-solid border-slate-300 p-2">
-        {display}
-      </div>
-    </div>
-  );
-};
-
-const Option = <TValue extends any>({
-  display,
-  value,
-  onSelect,
-}: OptionProps<TValue>) => {
-  return (
-    <div
-      className="cursor-pointer border-t border-solid border-slate-300 p-2 first:border-t-0"
-      onClick={() => onSelect(value)}
-    >
-      {display}
-    </div>
-  );
-};
 
 export const Dropdown = <TValue extends any>({
   className,
   options,
   value,
   label,
+  renderFocused,
   onSelect: onSelectProp,
 }: DropdownProps<TValue>) => {
   const [isOpen, setOpen] = useState(false);
   const [dropdownWidth, setDropdownWidth] = useState(0);
+  const [dropdownInstance, setDropdownInstance] =
+    useState<HTMLDivElement | null>(null);
   const [dropdownWidthRef] = useResizeObserverRef((entries) => {
     setDropdownWidth(entries[0].borderBoxSize[0].inlineSize);
   });
@@ -80,11 +38,29 @@ export const Dropdown = <TValue extends any>({
     setOpen(false);
   };
 
+  const onFocus = () => {
+    setOpen(true);
+  };
+
+  const refCallback = (instance: HTMLDivElement) => {
+    dropdownWidthRef(instance);
+    setDropdownInstance(instance);
+  };
+
+  useEffect(() => {
+    if (renderFocused) {
+      dropdownInstance?.focus();
+    }
+  }, [dropdownInstance, renderFocused]);
+
   return (
     <ClickAwayListener onClickAway={() => setOpen(false)}>
       <div
-        ref={dropdownWidthRef}
-        className={classNames("relative py-2", className)}
+        ref={refCallback}
+        className={classNames("relative py-2 outline-none", className)}
+        tabIndex={0} // make dropdown focusable
+        autoFocus
+        onFocus={onFocus}
       >
         <Toggle
           display={selectedOptionDisplay}

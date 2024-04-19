@@ -22,7 +22,7 @@ export const Nav = () => {
       >
         <h1
           className={classNames(
-            "w-44 font-bold transition-all duration-200",
+            "w-44 origin-top-left font-bold transition-all duration-200",
             applyConditionalScrollStyles("text-l", "text-xl"),
           )}
         >

@@ -1,5 +1,10 @@
 import { WeaponAttributeType } from "@/types";
 
+interface WeaponAttributeFormValues {
+  type?: WeaponAttributeType;
+  value?: string;
+}
+
 export interface SimulationFormValues {
   weaponGroups: {
     attacks?: string;
@@ -8,10 +13,7 @@ export interface SimulationFormValues {
     armourPenetration?: string;
     damage?: string;
     weaponsCount?: string;
-    attributes?: {
-      type?: WeaponAttributeType;
-      value?: string;
-    }[];
+    attributes?: WeaponAttributeFormValues[];
   }[];
   defenderGroups: {
     toughness?: string;

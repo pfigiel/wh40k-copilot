@@ -8,5 +8,6 @@ export interface DropdownProps<TValue>
   className?: string;
   options: DropdownOption<TValue>[];
   value: TValue;
+  renderFocused?: boolean;
   onSelect: (value: TValue) => void;
 }

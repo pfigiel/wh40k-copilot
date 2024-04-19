@@ -1,10 +1,11 @@
 import { SimulationFormValues } from "@/battle-calculator/types";
+import { weaponAttributeHasValue } from "@/battle-calculator/utils";
 import { Button, DropdownField, InputField } from "@/components";
 import { WeaponAttributeType } from "@/types";
 import { range, ssCaseToSpacedPascalCase } from "@/utils";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MouseEvent, useMemo } from "react";
+import { MouseEvent, useMemo, useState } from "react";
 import { Control, useFieldArray } from "react-hook-form";
 
 interface Props {
@@ -13,6 +14,10 @@ interface Props {
 }
 
 export const WeaponAttributesFieldArray = ({ control, parentIndex }: Props) => {
+  const [shouldRenderValueFieldMap, setShouldRenderValueFieldMap] = useState<{
+    [key: number]: boolean;
+  }>({});
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: `weaponGroups.${parentIndex}.attributes`,
@@ -31,12 +36,22 @@ export const WeaponAttributesFieldArray = ({ control, parentIndex }: Props) => {
   }, []);
 
   const onAddWeaponAttributeClick = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault(); // prevent form from being submitted due to click
+    event.preventDefault(); // prevent form from being submitted by the click
     append({});
   };
 
   const onRemoveWeaponAttributeClick = (index: number) => {
+    const newShouldRenderValueFieldMap = { ...shouldRenderValueFieldMap };
+    newShouldRenderValueFieldMap[index] = false;
+    setShouldRenderValueFieldMap(newShouldRenderValueFieldMap);
     remove(index);
+  };
+
+  const onSelect = (attributeType: WeaponAttributeType, index: number) => {
+    const newShouldRenderValueFieldMap = { ...shouldRenderValueFieldMap };
+    newShouldRenderValueFieldMap[index] =
+      weaponAttributeHasValue(attributeType);
+    setShouldRenderValueFieldMap(newShouldRenderValueFieldMap);
   };
 
   return (
@@ -49,13 +64,17 @@ export const WeaponAttributesFieldArray = ({ control, parentIndex }: Props) => {
             label="Attribute name"
             name={`weaponGroups.${parentIndex}.attributes.${index}.type`}
             options={attributeOptions}
+            renderFocused
+            onSelect={(value) => onSelect(value, index)}
           />
-          <InputField
-            className="w-4 flex-auto"
-            control={control}
-            name={`weaponGroups.${parentIndex}.attributes.${index}.value`}
-            label="Value"
-          />
+          {shouldRenderValueFieldMap[index] && (
+            <InputField
+              className="w-4 flex-auto"
+              control={control}
+              name={`weaponGroups.${parentIndex}.attributes.${index}.value`}
+              label="Value"
+            />
+          )}
           <button onClick={() => onRemoveWeaponAttributeClick(index)}>
             <FontAwesomeIcon icon={faTrash} />
           </button>
