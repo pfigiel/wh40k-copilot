@@ -1,4 +1,5 @@
 export enum WeaponAttributeType {
+  ANTI,
   BLAST,
   DEVASTATING_WOUNDS,
   LETHAL_HITS,

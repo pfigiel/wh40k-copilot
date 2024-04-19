@@ -1,5 +1,6 @@
 import { checkWound } from "./check-wound";
 import { WeaponEntity } from "@/api/simulation/entities";
+import { WeaponAttributeType } from "@/types";
 
 export const resolveWound = (
   rollResult: number,
@@ -15,7 +16,11 @@ export const resolveWound = (
     weapon.strength,
     toughness,
   );
-  const isCriticalWound = rollResult + (modifiers?.criticalModifier ?? 0) >= 6;
+
+  const antiAttribute = weapon.getAttribute(WeaponAttributeType.ANTI);
+  const criticalThreshold = antiAttribute?.value ?? 6;
+  const isCriticalWound =
+    rollResult + (modifiers?.criticalModifier ?? 0) >= criticalThreshold;
 
   return { isWound, isCriticalWound };
 };

@@ -102,28 +102,34 @@ const resolveWoundsAndSaves = (
   roundStatistics: RoundStatistics,
   isAutoWound?: boolean,
 ) => {
-  if (!isAutoWound) {
-    // TODO: apply rules around critical wounds
-    const { isWound } = performWoundRolls(weapon, defenders);
+  const { isWound, isCriticalWound } = performWoundRolls(weapon, defenders);
 
-    if (!isWound) {
-      return;
-    }
-  } else {
+  if (!isAutoWound && !isWound) {
+    return;
+  } else if (isAutoWound) {
     roundStatistics.lethalHits++;
   }
 
   roundStatistics.wounds++;
-  const saveSuccessful = resolveSave(
-    roll(Dice.D6),
-    weapon.armourPenetration,
-    defenders[0].armourSave,
-    defenders[0].invulnerableSave,
-  );
 
-  if (saveSuccessful) {
-    roundStatistics.saves++;
-    return;
+  // skip saves for devastating wounds
+  if (
+    !(
+      isCriticalWound &&
+      weapon.hasAttribute(WeaponAttributeType.DEVASTATING_WOUNDS)
+    )
+  ) {
+    const saveSuccessful = resolveSave(
+      roll(Dice.D6),
+      weapon.armourPenetration,
+      defenders[0].armourSave,
+      defenders[0].invulnerableSave,
+    );
+
+    if (saveSuccessful) {
+      roundStatistics.saves++;
+      return;
+    }
   }
 
   allocateWounds(defenders, weapon.damage.resolve(), roundStatistics);
