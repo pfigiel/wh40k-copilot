@@ -1,9 +1,13 @@
 import { resolveHit } from "./resolve-hit";
 import { roll } from "./roll";
 import { WeaponEntity } from "@/api/simulation/entities";
-import { Dice, RerollStrategy, RerollType } from "@/types";
+import { Dice, RerollStrategy, RerollType, WeaponAttributeType } from "@/types";
 
 export const performHitRolls = (weapon: WeaponEntity) => {
+  if (weapon.hasAttribute(WeaponAttributeType.TORRENT)) {
+    return { isHit: true, isCriticalHit: false };
+  }
+
   const hitRoll = roll(Dice.D6);
   let { isHit, isCriticalHit } = resolveHit(hitRoll, weapon);
 

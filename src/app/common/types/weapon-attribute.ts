@@ -4,6 +4,7 @@ export enum WeaponAttributeType {
   DEVASTATING_WOUNDS,
   LETHAL_HITS,
   SUSTAINED_HITS,
+  TORRENT,
   TWIN_LINKED,
 }
 
