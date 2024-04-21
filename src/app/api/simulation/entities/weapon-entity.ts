@@ -2,9 +2,9 @@ import {
   FixedAttribute,
   FixedOrRandomizedAttribute,
 } from "@/api/simulation/types";
+import { WeaponReroll, WeaponRerollApplication } from "@/types";
 import {
   RerollStrategy,
-  RerollType,
   Weapon,
   WeaponAttribute,
   WeaponAttributeType,
@@ -18,10 +18,9 @@ export class WeaponEntity implements Omit<Weapon, "attacks" | "damage"> {
   public damage: FixedOrRandomizedAttribute = new FixedAttribute(1);
   public skill: number = 6;
   public strength: number = 1;
-  public hitRerollType?: RerollType;
-  public woundRerollType?: RerollType;
   public attributes?: WeaponAttribute[];
   public modifiers?: WeaponModifier[];
+  public rerolls?: WeaponReroll[];
   public rerollStrategies?: RerollStrategy[];
 
   public constructor(initializer?: Partial<WeaponEntity>) {
@@ -50,6 +49,14 @@ export class WeaponEntity implements Omit<Weapon, "attacks" | "damage"> {
     modifierType: WeaponModifierType,
   ): WeaponModifier | undefined {
     return this.modifiers?.find((modifier) => modifier.type === modifierType);
+  }
+
+  public getReroll(
+    rerollApplication: WeaponRerollApplication,
+  ): WeaponReroll | undefined {
+    return this.rerolls?.find(
+      (reroll) => reroll.application === rerollApplication,
+    );
   }
 
   public hasRerollStrategy(rerollStrategy: RerollStrategy): boolean {

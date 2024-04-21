@@ -4,10 +4,12 @@ import {
   StatisticsSummary,
   WeaponAttributesFieldArray,
 } from "./battle-calculator/components";
+import { RerollFieldsArray } from "./battle-calculator/components/rerolls-field-array";
 import { SimulationFormValues } from "./battle-calculator/types";
 import { simulationFormValuesToDto } from "./battle-calculator/utils";
+import { RerollType } from "./common/types";
 import { useSimulationResult as useSimulationResults } from "@/app/battle-calculator/hooks/useSimulationResult";
-import { Button, InputField, Section } from "@/components";
+import { Button, DropdownField, InputField, Section } from "@/components";
 import { SimulationRequestDto } from "@/dtos";
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -134,6 +136,7 @@ const Home = () => {
                   control={control}
                   parentIndex={index}
                 />
+                <RerollFieldsArray control={control} parentIndex={index} />
                 {index > 0 && (
                   <Button onClick={() => onRemoveWeaponGroupClick(index)}>
                     Remove weapon group
@@ -166,13 +169,11 @@ const Home = () => {
                 <InputField
                   label="Invulnerable Save"
                   control={control}
-                  required
                   name={`defenderGroups.${index}.invulnerableSave`}
                 />
                 <InputField
                   label="Feel No Pain"
                   control={control}
-                  required
                   name={`defenderGroups.${index}.feelNoPain`}
                 />
                 <InputField
@@ -186,6 +187,15 @@ const Home = () => {
                   control={control}
                   required
                   name={`defenderGroups.${index}.modelsCount`}
+                />
+                <DropdownField
+                  label="Save rerolls"
+                  control={control}
+                  name={`defenderGroups.${index}.saveRerollType`}
+                  options={[
+                    { value: RerollType.ONES, display: "Ones" },
+                    { value: RerollType.ALL, display: "All" },
+                  ]}
                 />
                 {index > 0 && (
                   <Button onClick={() => onRemoveDefenderGroupClick(index)}>

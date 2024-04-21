@@ -1,7 +1,13 @@
 import { resolveWound } from "./resolve-wound";
 import { roll } from "./roll";
 import { DefenderEntity, WeaponEntity } from "@/api/simulation/entities";
-import { Dice, RerollStrategy, RerollType, WeaponAttributeType } from "@/types";
+import {
+  Dice,
+  WeaponRerollApplication,
+  RerollStrategy,
+  RerollType,
+  WeaponAttributeType,
+} from "@/types";
 
 export const performWoundRolls = (
   weapon: WeaponEntity,
@@ -14,10 +20,12 @@ export const performWoundRolls = (
     defenders[0].toughness,
   );
 
+  const woundReroll = weapon.getReroll(WeaponRerollApplication.WOUNDS);
   const isRerollAvailable =
-    weapon.woundRerollType === RerollType.ALL ||
-    weapon.hasAttribute(WeaponAttributeType.TWIN_LINKED) ||
-    (woundRoll === 1 && weapon.woundRerollType === RerollType.ONES);
+    woundReroll &&
+    (woundReroll.type === RerollType.ALL ||
+      weapon.hasAttribute(WeaponAttributeType.TWIN_LINKED) ||
+      (woundRoll === 1 && woundReroll.type === RerollType.ONES));
 
   const shouldRerollByFishingStrategy =
     weapon.hasRerollStrategy(RerollStrategy.FISH_FOR_CRITICAL_WOUNDS) &&

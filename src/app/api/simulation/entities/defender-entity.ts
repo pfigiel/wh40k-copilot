@@ -1,4 +1,4 @@
-import { DamageReductionType, Defender } from "@/types";
+import { DamageReductionType, Defender, RerollType } from "@/types";
 
 export class DefenderEntity implements Defender {
   public armourSave: number = 6;
@@ -8,6 +8,7 @@ export class DefenderEntity implements Defender {
   public wounds: number = 1;
   public woundsRemaining: number;
   public damageReduction?: DamageReductionType;
+  public saveRerollType?: RerollType;
 
   public constructor(
     initializer: Partial<Omit<DefenderEntity, "woundsRemaining">>,

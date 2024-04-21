@@ -1,6 +1,6 @@
 import { SimulationFormValues } from "@/battle-calculator/types";
 import { weaponAttributeHasValue } from "@/battle-calculator/utils";
-import { Button, DropdownField, InputField } from "@/components";
+import { Button, DropdownField, InputField, Section } from "@/components";
 import { WeaponAttributeType } from "@/types";
 import { range, ssCaseToSpacedPascalCase } from "@/utils";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -55,7 +55,7 @@ export const WeaponAttributesFieldArray = ({ control, parentIndex }: Props) => {
   };
 
   return (
-    <>
+    <Section className="my-5 px-2 pb-2 pt-3" title="Attributes" level={3}>
       {fields.map((field, index) => (
         <div key={field.id} className="flex gap-2">
           <DropdownField
@@ -81,6 +81,6 @@ export const WeaponAttributesFieldArray = ({ control, parentIndex }: Props) => {
         </div>
       ))}
       <Button onClick={onAddWeaponAttributeClick}>Add Weapon Attribute</Button>
-    </>
+    </Section>
   );
 };

@@ -46,8 +46,12 @@ export const simulationFormValuesToDto = (
         damage: parseFixedOrRandomizedProperty(weaponGroup.damage!),
         weaponsCount: parseInt(weaponGroup.weaponsCount!),
         attributes: weaponGroup.attributes?.map((attribute) => ({
-          type: attribute.type!,
+          type: parseInt(attribute.type!),
           value: attribute.value ? parseInt(attribute.value) : undefined,
+        })),
+        rerolls: weaponGroup.rerolls?.map((reroll) => ({
+          application: parseInt(reroll.application!),
+          type: parseInt(reroll.type!),
         })),
       })),
       defenderGroups: formValues.defenderGroups.map((defenderGroup) => ({
@@ -62,6 +66,10 @@ export const simulationFormValuesToDto = (
           : undefined,
         wounds: parseInt(defenderGroup.wounds!),
         modelsCount: parseInt(defenderGroup.modelsCount!),
+        saveRerollType:
+          defenderGroup.saveRerollType !== undefined
+            ? parseInt(defenderGroup.saveRerollType)
+            : undefined,
       })),
     };
     // just return undefined upon error, as validation should be handled by the form

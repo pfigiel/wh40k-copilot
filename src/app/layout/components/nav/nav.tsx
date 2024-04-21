@@ -1,16 +1,23 @@
 "use client";
 
 import classNames from "classnames";
-import { useDebouncedValue, useWindowScrollPosition } from "rooks";
+import { useCallback, useEffect, useState } from "react";
+import { useWindowScrollPosition } from "rooks";
 
 export const Nav = () => {
   const { scrollY } = useWindowScrollPosition();
-  const [isScrolledDebounced] = useDebouncedValue(scrollY > 0, 20);
+  const [isMounted, setMounted] = useState(false);
 
-  const applyConditionalScrollStyles = (
-    scrolledStyles: string,
-    notScrolledStyles: string,
-  ) => (isScrolledDebounced ? scrolledStyles : notScrolledStyles);
+  const applyConditionalScrollStyles = useCallback(
+    (scrolledStyles: string, notScrolledStyles: string) =>
+      // mounted check necessary due to initial styles being applied for not scrolled, however page can be refreshed scrolled
+      scrollY > 0 && isMounted ? scrolledStyles : notScrolledStyles,
+    [isMounted, scrollY],
+  );
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>

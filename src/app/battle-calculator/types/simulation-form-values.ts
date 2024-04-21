@@ -1,8 +1,11 @@
-import { WeaponAttributeType } from "@/types";
-
 interface WeaponAttributeFormValues {
-  type?: WeaponAttributeType;
+  type?: string;
   value?: string;
+}
+
+interface RerollsFormValues {
+  application?: string;
+  type?: string;
 }
 
 export interface SimulationFormValues {
@@ -14,6 +17,7 @@ export interface SimulationFormValues {
     damage?: string;
     weaponsCount?: string;
     attributes?: WeaponAttributeFormValues[];
+    rerolls?: RerollsFormValues[];
   }[];
   defenderGroups: {
     toughness?: string;
@@ -22,5 +26,6 @@ export interface SimulationFormValues {
     feelNoPain?: string;
     wounds?: string;
     modelsCount?: string;
+    saveRerollType?: string;
   }[];
 }

@@ -7,8 +7,6 @@ import { allocateWounds } from "./utils/allocate-wounds";
 import { performHitRolls } from "./utils/perform-hit-rolls";
 import { performWoundRolls } from "./utils/perform-wound-rolls";
 import { resolveSave } from "./utils/resolveSave";
-import { roll } from "./utils/roll";
-import { Dice } from "@/types/dice";
 import { WeaponAttributeType } from "@/types/weapon-attribute";
 import { range } from "@/utils/range";
 
@@ -120,10 +118,10 @@ const resolveWoundsAndSaves = (
     )
   ) {
     const saveSuccessful = resolveSave(
-      roll(Dice.D6),
       weapon.armourPenetration,
       defenders[0].armourSave,
       defenders[0].invulnerableSave,
+      defenders[0].saveRerollType,
     );
 
     if (saveSuccessful) {
